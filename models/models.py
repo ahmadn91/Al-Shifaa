@@ -59,4 +59,29 @@ class StockReturnExt(models.TransientModel):
 
 
 
+class SaleOrderExt(models.Model):
+    _inherit="sale.order"
+
+    customer_debit = fields.Float(string="Customer Debit",compute="get_customer_debit_details",readonly=True)
+    farthest_due_date = fields.Date(string="farthest Due",readonly=True)
+
+
+
+    @api.onchange("partner_id")
+    def get_customer_debit_details(self):
+        amount=0
+        dates=[]
+        rec = self.env["account.move"].search([("invoice_partner_display_name","=",self.partner_id.name)])
+        for item in rec:
+            amount += item.amount_total_signed
+            dates.append(item.invoice_date_due)
+        if amount:
+            self.customer_debit = amount
+        else:
+            self.customer_debit = 0
+        if dates:
+            self.farthest_due_date = dates[0]
+        else:
+            self.farthest_due_date=""
         
+
