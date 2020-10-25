@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api
-
+from odoo import models, fields, api, _
+from odoo.exceptions import UserError
 
 
 class Shifaa(models.Model):
@@ -12,3 +12,23 @@ class Shifaa(models.Model):
     department = fields.Char(string="Department")
     price_category = fields.Char(string="Price Category")
     client_code = fields.Integer(string="Client Code")
+
+
+
+class StockPickingExt(models.Model): # By AhmedNaseem, Used to block delivery validation if Done > Demand.
+    _inherit="stock.picking"
+
+    def button_validate(self):
+        products=[]
+        for item in self.move_ids_without_package:
+            if item.product_uom_qty < item.quantity_done:
+                products.append(item.product_id.name)
+        if products:
+            items = str(products)
+            raise UserError(_("You have processed more than what was initially planned for the products %s " % items)) 
+        else:
+            res = super(StockPickingExt,self).button_validate()
+            return res
+
+
+    
