@@ -15,6 +15,9 @@ class Shifaa(models.Model):
 
 
 
+    
+
+
 class StockPickingExt(models.Model): # By AhmedNaseem, Used to block delivery validation if Done > Demand.
     _inherit="stock.picking"
 
@@ -31,4 +34,29 @@ class StockPickingExt(models.Model): # By AhmedNaseem, Used to block delivery va
             return res
 
 
-    
+
+class StockReturnExt(models.TransientModel):
+    _inherit="stock.return.picking"
+
+
+    def notify(self,rec_id="",rec_name=""): #takes in record_id and record_name
+        try:
+            channel_id = self.env['mail.channel'].search([('name', '=', 'Sales')])
+            
+            notification = ('<div class="sale.order"><a href="#" class="o_redirect" data-oe-model = "sale.order" data-oe-id="%s">#%s</a></div>') % (rec_id, rec_name,)
+            channel_id.message_post(
+                        body='Automated Message : Order has been returned: '+notification,
+                        subtype='mail.mt_comment')
+        except:
+            raise UserError(_("Unable to send Notification,Please check channel Name"))
+        
+    def create_returns(self):
+        origin = self.env['stock.picking'].search([("id","=",self.picking_id.id)],limit=1).origin
+        rec = self.env['sale.order'].search([("name","=",origin)],limit=1)
+        self.notify(rec_id = rec.id,rec_name=rec.name)
+        res = super(StockReturnExt,self).create_returns()
+        return res
+
+
+
+        
