@@ -34,6 +34,10 @@ class StockPickingExt(models.Model): # By AhmedNaseem, Used to block delivery va
             return res
 
 
+    
+
+
+
 
 class StockReturnExt(models.TransientModel):
     _inherit="stock.return.picking"
@@ -85,3 +89,27 @@ class SaleOrderExt(models.Model):
             self.farthest_due_date=""
         
 
+
+class StockImmediateTransferExt(models.TransientModel):
+    _inherit="stock.immediate.transfer"
+
+
+
+
+    def notify(self,rec_id="",rec_name=""): #takes in record_id and record_name
+        try:
+            channel_id = self.env['mail.channel'].search([('name', '=', 'Sales')])
+            
+            notification = ('<div class="purchase.order"><a href="#" class="o_redirect" data-oe-model = "purchase.order" data-oe-id="%s">#%s</a></div>') % (rec_id, rec_name,)
+            channel_id.message_post(
+                        body='Automated Message : Order has been recieved: '+notification,
+                        subtype='mail.mt_comment')
+        except:
+            raise UserError(_("Unable to send Notification,Please check channel Name"))
+
+    def process(self):
+        origin = self.env['stock.picking'].search([("id","=",self.pick_ids.id)],limit=1).origin
+        rec = self.env['purchase.order'].search([("name","=",origin)],limit=1)
+        self.notify(rec_id = rec.id,rec_name=rec.name)
+        res = super(StockImmediateTransferExt,self).process()
+        return res
