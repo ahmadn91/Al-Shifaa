@@ -113,3 +113,9 @@ class StockImmediateTransferExt(models.TransientModel):
         self.notify(rec_id = rec.id,rec_name=rec.name)
         res = super(StockImmediateTransferExt,self).process()
         return res
+
+class HRemployee(models.Model):
+    _inherit = "hr.employee"
+
+    starting_date = fields.Date(related="contract_id.date_start")
+
