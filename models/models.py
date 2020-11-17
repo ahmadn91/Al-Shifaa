@@ -30,9 +30,15 @@ class StockPickingExt(models.Model): # By AhmedNaseem, Used to block delivery va
             items = str(products)
             raise UserError(_("You have processed more than what was initially planned for the products %s " % items)) 
         else:
-            res = super(StockPickingExt,self).button_validate()
-            return res
+            # By Mohammed Saeb, For sending the lot id to sale order line
+            if self.sale_id:
+                for line in self.move_line_ids_without_package:
+                    if line.lot_id:
+                        sale_order_line_id = self.sale_id.order_line.search([('product_id', '=', line.product_id.id)])
+                        sale_order_line_id.write({'lot_id': line.lot_id.id})
 
+            res = super(StockPickingExt, self).button_validate()
+            return res
 
     
 
@@ -63,13 +69,18 @@ class StockReturnExt(models.TransientModel):
 
 
 
+
 class SaleOrderExt(models.Model):
     _inherit="sale.order"
 
     customer_debit = fields.Float(string="Customer Debit",compute="get_customer_debit_details",readonly=True)
     farthest_due_date = fields.Date(string="farthest Due",readonly=True)
+    warehouse_location_id = fields.Many2one('stock.picking',compute='calc_warehouse_location_id')
 
-
+    @api.depends("partner_id")
+    def calc_warehouse_location_id(self):
+        transfers=self.env["stock.picking"].search([("origin","=",self.name)],limit=1)
+        self.warehouse_location_id = transfers.id
 
     @api.onchange("partner_id")
     def get_customer_debit_details(self):
@@ -87,14 +98,13 @@ class SaleOrderExt(models.Model):
             self.farthest_due_date = dates[0]
         else:
             self.farthest_due_date=""
-        
-
+    
+class SaleOrderLine(models.Model):
+    _inherit = "sale.order.line"
+    lot_id = fields.Many2one('stock.production.lot', readonly=True)
 
 class StockImmediateTransferExt(models.TransientModel):
     _inherit="stock.immediate.transfer"
-
-
-
 
     def notify(self,rec_id="",rec_name=""): #takes in record_id and record_name
         try:
@@ -113,3 +123,8 @@ class StockImmediateTransferExt(models.TransientModel):
         self.notify(rec_id = rec.id,rec_name=rec.name)
         res = super(StockImmediateTransferExt,self).process()
         return res
+
+class HRemployee(models.Model):
+    _inherit = "hr.employee"
+    # starting_date = fields.Date(related="contract_id.date_start")
+

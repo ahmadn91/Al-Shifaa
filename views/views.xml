@@ -23,6 +23,7 @@
                 <field name="partner_id" position="after">
                   <field name="customer_debit"/>
                   <field name="farthest_due_date"/>
+                  <field name="warehouse_location_id" />
                 </field>
             </field>
     </record>
