@@ -126,5 +126,6 @@ class StockImmediateTransferExt(models.TransientModel):
 
 class HRemployee(models.Model):
     _inherit = "hr.employee"
-    # starting_date = fields.Date(related="contract_id.date_start")
+
+    starting_date = fields.Date(related="contract_id.date_start")
 
