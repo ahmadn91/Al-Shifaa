@@ -4,7 +4,7 @@
 
    
         <!-- HEADER TEMPLATE -->
-  <template id="custom_external_layout"  >
+  <template id="custom_external_layout">
 		<t t-foreach="docs" t-as="o">
 	        <div t-attf-class="header o_company_#{o.company_id.id}_layout" style="border-bottom:solid 1px black;">
 	             <div class="row mt32 mb32" id="informations" style="font-family: Arial, serif;">
@@ -58,11 +58,10 @@
 
        <div class="footer o_standard_footer" style="border-top:solid 1px black;">
 	            <div class="row" id="informations">
-					<div align="center" class="col-5 text-justify">
-                       <p> 
-					العنوان : 
+					<div align="center" class="col-5 text-left">
 						<p t-if="o.company_id.name == 'Alshifa' or o.company_id.name == 'alshifa'">  
-						<span t-field="o.company_id.street">العراق - بغداد حي الوحدة</span>
+						العنوان :<span t-field="o.company_id.street">العراق - بغداد حي الوحدة</span>
+						<br/>
 						<span t-field="o.company_id.street2">محلة ٩٠٤-شارع ٥٨ بناية ٣٢</span>
 					</p>
 
@@ -70,6 +69,7 @@
 						<span t-field="o.company_id.street">العراق - بغداد حي الوحدة</span>
 						<span t-field="o.company_id.street2"> محلة ٩٠٤- زقاق ١٧ رقم العقار ٣٢\1    </span>
 					</p>
+
 						<p t-if="o.company_id.name == 'Alshifa Aldaem'">  
 						<span t-field="o.company_id.street">العراق - البصرة - الجزائر - مقابل مطعم باربيكو المتنقل   </span>
 						<span t-field="o.company_id.street2"></span>
@@ -84,12 +84,14 @@
 						<span t-field="o.company_id.street">العراق - بغداد حي الوحدة</span>
 						<span t-field="o.company_id.street2">محلة ٩٠٤-شارع ٥٨ بناية ٣٢</span>
 					</p>
-
-					 <br/>
+				
+					<p>
 		             هاتف :<span t-field="o.company_id.phone"/>	
-					 <br/>  
+					 </p>
+					 <p class="mb12"> 
 					  البريد الإلكتروني:<span t-field="o.company_id.email"/>
 					 </p>
+
 				  </div>
 	            
 					<div class="col-2 text-center " align="center"/>
@@ -144,17 +146,12 @@
                   </strong>
                  <br/> <p t-field="doc.warehouse_location_id.location_id"></p>
                 </xpath> 
-
-
 				<xpath expr="//table[hasclass('o_main_table')]//th[@name='th_description']" position="after">
 					<th name="th_lot" class="text-center">Batch</th>
 				</xpath> 
-
-				<!-- <xpath expr="//table[hasclass('o_main_table')]//tbody[hasclass('sale_tbody')]//td[@name='td_quantity']" position="after"> -->
 				<xpath expr="//table[hasclass('o_main_table')]//td[@name='td_quantity']" position="before">
 				  <td class="text-center">
 				   <span t-field="line.lot_id" />
-				   <!-- <p>something </p> -->
 				   </td>
 				</xpath> 
   </template>
