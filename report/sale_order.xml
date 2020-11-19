@@ -37,7 +37,7 @@
 
 
 	                <div align="center" class="col-2 text-center">
-	                    <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" class="img" alt="Logo" style="width: 132px;"/>
+	                    <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" class="img" alt="Logo" style="width: 150px; height:90px;"/>
                     </div>
 
 	                <div align="center" class="col-5">
@@ -56,50 +56,47 @@
 
 
 
-       <div class="footer o_standard_footer" style="border-top:solid 1px black;">
-	            <div class="row" id="informations">
-					<div align="center" class="col-5 text-left">
-						<p t-if="o.company_id.name == 'Alshifa' or o.company_id.name == 'alshifa'">  
-						العنوان :<span t-field="o.company_id.street">العراق - بغداد حي الوحدة</span>
-						<br/>
+       <div class="footer o_standard_footer" style="border-top:solid 1px black; height:12px;">
+	            <div class="row" id="informations" style="height:12px;">
+					<div align="center" class="col-5 text-left" style=" direction:rtl; ">
+						<p t-if="o.company_id.name == 'alshifa'">  
+						العنوان : 
+						<span t-field="o.company_id.street">العراق - بغداد حي الوحدة</span>
 						<span t-field="o.company_id.street2">محلة ٩٠٤-شارع ٥٨ بناية ٣٢</span>
 					</p>
 
 	              <p t-if="o.company_id.name == 'Alshifa Pharma'">  
+						العنوان : 
 						<span t-field="o.company_id.street">العراق - بغداد حي الوحدة</span>
 						<span t-field="o.company_id.street2"> محلة ٩٠٤- زقاق ١٧ رقم العقار ٣٢\1    </span>
 					</p>
-
 						<p t-if="o.company_id.name == 'Alshifa Aldaem'">  
+						العنوان : 
 						<span t-field="o.company_id.street">العراق - البصرة - الجزائر - مقابل مطعم باربيكو المتنقل   </span>
 						<span t-field="o.company_id.street2"></span>
 					</p>
-
 					<p t-if="o.company_id.name == 'Erbil'">  
+						العنوان : 
 						<span t-field="o.company_id.street">عيراق - هه ولير</span>
 						<span t-field="o.company_id.street2">  ٥٠\٥٤٠ نهومي يه كه م  كه رةكي مستوفي\عه ره ب-خانوو زماره  </span>
 					</p>
-
 					<p t-if="o.company_id.name == 'Alshifa Aldaem'">  
+						العنوان : 
 						<span t-field="o.company_id.street">العراق - بغداد حي الوحدة</span>
 						<span t-field="o.company_id.street2">محلة ٩٠٤-شارع ٥٨ بناية ٣٢</span>
 					</p>
-				
 					<p>
-		             هاتف :<span t-field="o.company_id.phone"/>	
+		             هاتف :<span t-field="o.company_id.phone"/><br/>	
+					
+					   <span style="direction:rtl;">البريد الإلكتروني : </span> <span t-field="o.company_id.email"/><br/>
 					 </p>
-					 <p class="mb12"> 
-					  البريد الإلكتروني:<span t-field="o.company_id.email"/>
-					 </p>
-
 				  </div>
-	            
+
 					<div class="col-2 text-center " align="center"/>
-				
 					<div align="center" class="col-5 text-justify">
 	                 <p> 
-                     <span t-field="o.company_id.street"/>
-					    <span t-field="o.company_id.street2"/>  <br/>
+                      address: <span t-field="o.company_id.street"/>
+					           <span t-field="o.company_id.street2"/>  <br/>
 		                 	Mobile:<span t-field="o.company_id.phone"/><br/>
 		                  	E-mail:<span t-field="o.company_id.email"/><br/>
 		                   	Website:<span t-field="o.company_id.website"/> <br/>
