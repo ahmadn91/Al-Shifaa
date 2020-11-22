@@ -2,13 +2,55 @@
 <odoo>
   <data>
 
+ <template id="report_assets_common_custom_fonts" name="Custom QWeb fonts" inherit_id="web.report_assets_common">
+        <xpath expr="." position="inside">
+            <link href="noboogh/static/src/css/main.css" rel="stylesheet" type="text/css"/>
+        </xpath>
+    </template>
+
+
    
         <!-- HEADER TEMPLATE -->
   <template id="custom_external_layout">
+ 
 		<t t-foreach="docs" t-as="o">
 	        <div t-attf-class="header o_company_#{o.company_id.id}_layout" style="border-bottom:solid 1px black;">
-	             <div class="row mt32 mb32" id="informations" style="font-family: Arial, serif;">
-					<div align="left" class="col-5">
+	             <div class="row mt32" id="informations" style="font-family: Arial, serif;">
+				
+	                <div align="center" class="col-5 text-left mt32" >
+  						<p t-if="o.company_id.name == 'Alshifa Aldaem'"> 
+					   	  AlSHIFA Al-Da'em
+						<br/>
+						  AlSHIFA Al-Da'em DrugStore
+							</p>
+							<p t-if="o.company_id.name == 'Alshifa Alnajaf'" >  Alshifa Alnajaf
+							</p>
+							<p t-if="o.company_id.name == 'Alshifa Basra'" > Alshifa Basra </p>
+							<p t-if="o.company_id.name == 'Alshifa Pharma'" > 
+								ALSHIFA Pharma
+							<br/>
+							ALSHIFA Pharma Scientific Drug  Bureau
+							</p>
+							<p t-if="o.company_id.name == 'Tops Alitqan'" > قمة الاتقان</p>
+							<p t-if="o.company_id.name == 'alshifa'" > ALSHIFA
+							<br/> 	ALSHIFA Scientific Drug  Bureau </p>
+						
+							<p t-if="o.company_id.name == 'Erbil'" > Erbil 
+					         	<br/>
+								Tops Al Itkan Company for supplies Drugs 	
+							</p>
+						<p t-if="o.company_id.name == 'Shkoy Newroz'" > Shky Newroz 
+										<br/>
+						Shky Newroz DrugStore
+									</p> 
+	                </div>
+
+
+	                <div align="center" class="col-2 text-center" style="margin-top:12px">
+	                    <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" class="img" alt="Logo" style="width: 150px; height:90px; margin-top:12px"/>
+                    </div>
+
+						<div class="col-5 text-right mt32">
 	                <p t-if="o.company_id.name == 'Alshifa Aldaem'"> الشفاء الدائم
 						<br/>
 						مذخر ادوية الشفاء الدائم 
@@ -26,23 +68,13 @@
 						<br/>
 						 شركة قمة الاتقان للادوية  و المستحضرات الطبية
 					</p>
-<p t-if="o.company_id.name == 'Shkoy Newroz'" > Shky Newroz 
-						<br/>
-كوكاى ده رمانى شكوى نه وروز
-					</p>
-
-
-	                <p t-if="o.company_id.name == 'My Company (San Francisco)'" > العام</p>
+						<p t-if="o.company_id.name == 'Shkoy Newroz'" > Shky Newroz 
+												<br/>
+						كوكاى ده رمانى شكوى نه وروز
+											</p>
 	            	</div>
 
-
-	                <div align="center" class="col-2 text-center">
-	                    <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" class="img" alt="Logo" style="width: 150px; height:90px;"/>
-                    </div>
-
-	                <div align="center" class="col-5">
-                     <p t-field="o.company_id.name"></p>
-	                </div>
+				   
 				    <div style="border-bottom: 1px solid black; border-top:none"/>
 	            </div>
 	        </div>
@@ -56,54 +88,87 @@
 
 
 
-       <div class="footer o_standard_footer" style="border-top:solid 1px black; height:12px;">
-	            <div class="row" id="informations" style="height:12px;">
-					<div align="center" class="col-5 text-left" style=" direction:rtl; ">
-						<p t-if="o.company_id.name == 'alshifa'">  
+       <div class="footer o_standard_footer" style="border-top:solid 1px black;">
+				
+				<div class="row">
+				<div align="left" class="col-5">
+				<p t-if="o.company_id.name == 'alshifa'">  
+						Address :  Iraq - Baghdad - Hai ALWihda 	<br/>
+                                  Sec 904 - st.58 - House 23
+
+					</p>
+
+	              <p t-if="o.company_id.name == 'Alshifa Pharma'">  
+						Address : Iraq - Baghdad - Hai ALWihda 	<br/>
+                                  Sec 904 - st.17 - House 23/1
+													 
+					</p>    
+
+						<p t-if="o.company_id.name == 'Alshifa Aldaem'">  
+						    Address : Iraq - Jazair Infornt of BBQ rest 
+						</p>
+					
+					<p t-if="o.company_id.name == 'Erbil' or o.company_id.name == 'Shkoy Newroz'">  
+						Address : Iraq - Erbil
+						<br/>
+							Mustawfi street/Arab, house num 548/5 second floor
+					   </p>
+	                
+					 <p> 
+					Mobile:<span t-field="o.company_id.phone"/><br/>
+					E-mail:<span t-field="o.company_id.email"/><br/>
+					<!-- Website:<span t-field="o.company_id.website"/> <br/> -->
+	                   </p>
+                   </div>
+
+
+
+
+
+	                <div align="center" class="col-2 text-center"/>
+
+
+				   <div align="right" class="col-5">
+				    	<p t-if="o.company_id.name == 'alshifa'">  
 						العنوان : 
-						<span t-field="o.company_id.street">العراق - بغداد حي الوحدة</span>
-						<span t-field="o.company_id.street2">محلة ٩٠٤-شارع ٥٨ بناية ٣٢</span>
+						العراق - بغداد حي الوحدة<br/>
+						محلة ٩٠٤-شارع ٥٨ بناية ٣٢
 					</p>
 
 	              <p t-if="o.company_id.name == 'Alshifa Pharma'">  
 						العنوان : 
-						<span t-field="o.company_id.street">العراق - بغداد حي الوحدة</span>
-						<span t-field="o.company_id.street2"> محلة ٩٠٤- زقاق ١٧ رقم العقار ٣٢\1    </span>
-					</p>
+						العراق - بغداد حي الوحدة <br/>
+						 محلة ٩٠٤- زقاق ١٧ رقم العقار ٣٢\1 
+					</p>    
+
 						<p t-if="o.company_id.name == 'Alshifa Aldaem'">  
 						العنوان : 
-						<span t-field="o.company_id.street">العراق - البصرة - الجزائر - مقابل مطعم باربيكو المتنقل   </span>
-						<span t-field="o.company_id.street2"></span>
+					العراق - البصرة - الجزائر - مقابل مطعم باربيكو المتنقل  <br/>
 					</p>
 					<p t-if="o.company_id.name == 'Erbil'">  
 						العنوان : 
-						<span t-field="o.company_id.street">عيراق - هه ولير</span>
-						<span t-field="o.company_id.street2">  ٥٠\٥٤٠ نهومي يه كه م  كه رةكي مستوفي\عه ره ب-خانوو زماره  </span>
+						عيراق - هه ولير	 <br/>
+						<br/>
+					  ٥٠\٥٤٠ نهومي يه كه م  كه رةكي مستوفي\عه ره ب-خانوو زماره
 					</p>
+
 					<p t-if="o.company_id.name == 'Alshifa Aldaem'">  
 						العنوان : 
-						<span t-field="o.company_id.street">العراق - بغداد حي الوحدة</span>
-						<span t-field="o.company_id.street2">محلة ٩٠٤-شارع ٥٨ بناية ٣٢</span>
+						العراق - بغداد حي الوحدة	 <br/>
+						<br/>
+						محلة ٩٠٤-شارع ٥٨ بناية ٣٢  
 					</p>
-					<p>
-		             هاتف :<span t-field="o.company_id.phone"/><br/>	
-					
-					   <span style="direction:rtl;">البريد الإلكتروني : </span> <span t-field="o.company_id.email"/><br/>
-					 </p>
-				  </div>
 
-					<div class="col-2 text-center " align="center"/>
-					<div align="center" class="col-5 text-justify">
-	                 <p> 
-                      address: <span t-field="o.company_id.street"/>
-					           <span t-field="o.company_id.street2"/>  <br/>
-		                 	Mobile:<span t-field="o.company_id.phone"/><br/>
-		                  	E-mail:<span t-field="o.company_id.email"/><br/>
-		                   	Website:<span t-field="o.company_id.website"/> <br/>
-	                   </p>
-                   </div>
-				</div>
-			</div>
+					<p>
+		             هاتف :<span t-field="o.company_id.phone"/>
+					 <br/>
+				 	<span t-field="o.company_id.email"/>:البريد الإلكتروني
+					 </p>
+		
+					</div>
+					</div>
+		        	</div>
+				
 			</t>
     </template>
 
@@ -125,7 +190,7 @@
 					<table class="table table-sm o_main_table" style="margin-top:300px;">
 						<thead>
 						<tr>
-						<th >Accountent</th>
+						<th >Accountant</th>
 						<th>Salesman</th>
 						<th>Manager</th>
 						<th>Warehouse</th>
