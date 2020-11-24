@@ -11,7 +11,7 @@
 
    
         <!-- HEADER TEMPLATE -->
-  <template id="custom_external_layout">
+		<template id="custom_external_layout">
  
 		<t t-foreach="docs" t-as="o">
 				<div t-attf-class="header o_company_#{o.company_id.id}_layout" style="border-bottom:solid 1px black;">
@@ -191,47 +191,68 @@
 
           <!-- MAIN TEMPLATE  -->
 
-      <template id="shifaa_report" inherit_id="sale.report_saleorder_document">
-               <xpath expr="//div[@t-field='doc.partner_id']" position="replace">
-               </xpath> 
+		<template id="shifaa_saleorder_report" inherit_id="sale.report_saleorder_document">
                   
-               <xpath expr="//t[@t-call='web.external_layout']" position="attributes"  >
-                <attribute name="t-call">Al-Shifaa.custom_external_layout</attribute>
-               </xpath> 
+				<xpath expr="//t[@t-call='web.external_layout']" position="attributes"  >
+						<attribute name="t-call">Al-Shifaa.custom_external_layout</attribute>
+				</xpath> 
 			 
-			   <xpath expr="//div[@name='so_total_summary']" position="after" >
-					<strong style="margin-top:300px;"> Costumer debit <p t-field="doc.customer_debit"/>   </strong>
+				<xpath expr="//div[@name='so_total_summary']" position="before">
+				 	<div class="row col-6" style="margin-bottom: -80px; margin-top: 80px;">
 
+						<table class="table table-sm">
+								<tr class="border-black o_subtotal" style="">
+										<td><strong>Previous Costumer debit</strong></td>
+										<td class="text-right">
+												<span t-field="doc.partner_id.total_due"/>
+										</td>
+								</tr>
+								<tr class="border-black o_total">
+										<td><strong>Current Costumer debit</strong></td>
+										<td class="text-right">
+												<span t-field="doc.current_customer_debit"/>
+										</td>
+								</tr>
+						</table>
 
-					<table class="table table-sm o_main_table" style="margin-top:300px;">
+					</div>
+				</xpath>
+
+				<xpath expr="//div[@name='so_total_summary']" position="after">
+					<table class="table table-sm o_main_table" style="margin-top:200px;">
 						<thead>
-						<tr>
-						<th >Accountant</th>
-						<th>Salesman</th>
-						<th>Manager</th>
-						<th>Warehouse</th>
-						<th>Client</th>
-						</tr>
+							<tr>
+								<th >Accountant</th>
+								<th>Salesman</th>
+								<th>Manager</th>
+								<th>Warehouse</th>
+								<th>Client</th>
+							</tr>
 						</thead>
 						</table>
 
 			   </xpath>
 			  
 
-                <xpath expr="//div[@id='informations']//div[@t-if='doc.user_id.name']" position="after" class="ml-8 float-right">
-				  <strong>
-                    Warehouse:  
-                  </strong>
-                 <br/> <p t-field="doc.warehouse_location_id.location_id"></p>
-                </xpath> 
-				<xpath expr="//table[hasclass('o_main_table')]//th[@name='th_description']" position="after">
-					<th name="th_lot" class="text-center">Batch</th>
-				</xpath> 
-				<xpath expr="//table[hasclass('o_main_table')]//td[@name='td_quantity']" position="before">
-				  <td class="text-center">
-				   <span t-field="line.lot_id" />
-				   </td>
-				</xpath> 
+					<xpath expr="//div[@id='informations']//div[@t-if='doc.user_id.name']" position="after" class="ml-8 float-right">
+						<div t-if="doc.warehouse_location_id.location_id" class="col-auto mw-100 mb-2">
+							<strong>Warehouse:</strong>
+							<p t-field="doc.warehouse_location_id.location_id"/>
+						</div>
+					</xpath> 
+
+					<xpath expr="//table[hasclass('o_main_table')]//th[@name='th_description']" position="after">
+						<th name="th_lot" class="text-center">Batch</th>
+						<th name="th_expire" class="text-center">Expiration Date</th>
+					</xpath> 
+					<xpath expr="//table[hasclass('o_main_table')]//td[@name='td_quantity']" position="before">
+						<td class="text-center">
+							<span t-field="line.lot_id" />
+						</td>
+						<td class="text-center">
+							<span t-field="line.lot_id.life_date" />
+						</td>
+					</xpath> 
   </template>
   </data>
 </odoo>

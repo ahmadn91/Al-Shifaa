@@ -30,8 +30,4 @@
         'report/sale_order.xml',
         
     ],
-    # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
-    ],
 }

@@ -73,9 +73,9 @@ class StockReturnExt(models.TransientModel):
 class SaleOrderExt(models.Model):
     _inherit="sale.order"
 
-    customer_debit = fields.Float(string="Customer Debit",compute="get_customer_debit_details",readonly=True)
-    farthest_due_date = fields.Date(string="farthest Due",readonly=True)
-    warehouse_location_id = fields.Many2one('stock.picking',compute='calc_warehouse_location_id')
+    current_customer_debit = fields.Monetary(string="Cuurent Debit", compute="get_customer_debit_details")
+    farthest_due_date = fields.Date(string="farthest Due", compute="get_customer_debit_details")
+    warehouse_location_id = fields.Many2one('stock.picking', compute='calc_warehouse_location_id')
 
     @api.depends("partner_id")
     def calc_warehouse_location_id(self):
@@ -84,21 +84,18 @@ class SaleOrderExt(models.Model):
 
     @api.onchange("partner_id")
     def get_customer_debit_details(self):
-        amount=0
+        # Get Current Debit
+        self.current_customer_debit = self.partner_id.total_due + self.amount_total
+
+        # Get lastest Debit Date
         dates=[]
-        rec = self.env["account.move"].search([("invoice_partner_display_name","=",self.partner_id.name)])
-        for item in rec:
-            amount += item.amount_total_signed
-            dates.append(item.invoice_date_due)
-        if amount:
-            self.customer_debit = amount
+        rec = self.env["account.move"].search([("invoice_partner_display_name","=",self.partner_id.name)], order="invoice_date_due desc")
+        if rec:
+            self.farthest_due_date = rec[0].invoice_date_due
         else:
-            self.customer_debit = 0
-        if dates:
-            self.farthest_due_date = dates[0]
-        else:
-            self.farthest_due_date=""
-    
+            self.farthest_due_date= False
+
+
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
     lot_id = fields.Many2one('stock.production.lot', readonly=True)
