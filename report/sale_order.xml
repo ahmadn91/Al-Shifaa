@@ -67,8 +67,8 @@
 												<br/>
 												مذخر ادوية الشفاء الدائم 
 										</h2>
-										<h2 align="right" style="font-size: 35px;" t-if="o.company_id.name == 'Alshifa Alnajaf'">دائن النجف</h2>
-										<h2 align="right" style="font-size: 35px;" t-if="o.company_id.name == 'Alshifa Basra'">دائن البصرة</h2>
+										<h2 align="right" style="font-size: 35px;" t-if="o.company_id.name == 'Alshifa Alnajaf'">دائم النجف</h2>
+										<h2 align="right" style="font-size: 35px;" t-if="o.company_id.name == 'Alshifa Basra'">دائم البصرة</h2>
 										<h2 align="right" style="font-size: 22px;" t-if="o.company_id.name == 'Alshifa Pharma'"
 											>الشفاء فارما
 											<br/>
