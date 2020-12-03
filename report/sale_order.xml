@@ -2,7 +2,7 @@
 <odoo>
   <data>
 
- 			<template id="report_assets_common_custom_fonts" name="Custom QWeb fonts" inherit_id="web.report_assets_common">
+<template id="report_assets_common_custom_fonts" name="Custom QWeb fonts" inherit_id="web.report_assets_common">
         <xpath expr="." position="inside">
             <link href="Al-Shifaa/static/src/css/main.css" rel="stylesheet" type="text/css"/>
         </xpath>
@@ -12,142 +12,241 @@
    
         <!-- HEADER TEMPLATE -->
 		<template id="custom_external_layout">
- 
+
 		<t t-foreach="docs" t-as="o">
+							        <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)"/>
+						<!-- HEADER -->
 				<div t-attf-class="header o_company_#{o.company_id.id}_layout" style="border-bottom:solid 1px black;">
+					
 						<div class="mt12 row" id="informations" style="width:100%;">
-
-								<div class="text-left mt32" style="width: 40%;">
-			  						<h2 align="left" style="font-size: 22px;" t-if="o.company_id.name == 'Alshifa Aldaem'"
-											>AlSHIFA Al-Da'em
-											<br/>
+							
+							<div class="text-left mt32" style="width: 40%;">
+								
+								<div t-if="o.company_id.id==4"  align="left">
+			  						<h2>AlSHIFA Al-Da'em</h2>
+											<h6>
 											AlSHIFA Al-Da'em DrugStore
-										</h2>
+										</h6>
+										</div>
 
-										<h2 align="left" style="font-size: 35px;" t-if="o.company_id.name == 'Alshifa Alnajaf'"											
-												>Alshifa Alnajaf
+										<div t-if="o.company_id.id==7" align="left" >
+										<h2 >Alshifa Alnajaf
 										</h2>
+										</div>
 
-										<h2 align="left" style="font-size: 35px;" t-if="o.company_id.name == 'Alshifa Basra'"
-												>Alshifa Basra
+										<div t-if="o.company_id.id==6" align="left" >
+										<h2>Alshifa Basra
 										</h2>
+										</div>
 
-										<h2 align="left" style="font-size: 22px;" t-if="o.company_id.name == 'Alshifa Pharma'"
-											>ALSHIFA Pharma
-												<br/>
+
+										<div t-if="o.company_id.id==3"  align="left">
+										<h2>ALSHIFA Pharma
+												</h2> 
+												<h6>
 												ALSHIFA Pharma Scientific Drug  Bureau
+										</h6>
+										</div>
+
+
+
+										<div t-if="o.company_id.id==5" align="left" >
+										<h2>Tops Alitqan
 										</h2>
-										<h2 align="left" style="font-size: 35px;" t-if="o.company_id.name == 'Tops Alitqan'"
-												>Tops Alitqan
-										</h2>
-										<h2 align="left" style="font-size: 22px;" t-if="o.company_id.name == 'alshifa'"
-												>ALSHIFA
-												<br/>
+										</div>
+
+
+										<div t-if="o.company_id.id==2" align="left">
+										<h2>ALSHIFA</h2> 
+												<h6>
 												ALSHIFA Scientific Drug  Bureau 
-										</h2>
-										<h2 align="left" style="font-size: 22px;" t-if="o.company_id.name == 'Erbil'" 
-												>Erbil 
-												<br/>
+											</h6>
+											</div>
+
+
+										<div t-if="o.company_id.name == 'Erbil'" align="left" >
+										<h2>Erbil 	</h2> 
+													<h6>
 												Tops Al Itkan Company for supplies Drugs 	
-										</h2>
-										<h2 align="left" style="font-size: 22px;" t-if="o.company_id.name == 'Shkoy Newroz'"
-												>Shky Newroz 
-												<br/>
+											</h6>
+											</div>
+
+
+
+										<div t-if="o.company_id.name == 'Shkoy Newroz'"  align="left">
+										<h2>Shky Newroz</h2> 
+												<h6>
 												Shky Newroz DrugStore
-										</h2> 
+											</h6>
+											</div>
+ 
 								</div>
+
+		
+
 
 								<div class="text-center" style="margin-top: 0px; width: 25%;">
 										<img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" class="img" alt="Logo" style="max-width: 150px; min-width: 50px; max-height: 130px;"/>
 								</div>
 
 								<div class="text-right mt32" style="width: 35%; margin-right: 10px;">
-										<h2 align="right" style="font-size: 22px;" t-if="o.company_id.name == 'Alshifa Aldaem'"
-												>الشفاء الدائم
-												<br/>
+
+									<div t-if="o.company_id.id==4">
+			  						<h2 align="right">   
+										 الشفاء الدائم
+									  </h2>
+											<h6 align="right">
 												مذخر ادوية الشفاء الدائم 
+										</h6>
+										</div>
+
+										<div t-if="o.company_id.id==7">
+										<h2 align="right">
+											دائم النجف			
+											</h2>
+										</div>
+
+
+										<div t-if="o.company_id.id==6">
+										<h2 align="right">
+											دائم البصرة				 
 										</h2>
-										<h2 align="right" style="font-size: 35px;" t-if="o.company_id.name == 'Alshifa Alnajaf'">دائم النجف</h2>
-										<h2 align="right" style="font-size: 35px;" t-if="o.company_id.name == 'Alshifa Basra'">دائم البصرة</h2>
-										<h2 align="right" style="font-size: 22px;" t-if="o.company_id.name == 'Alshifa Pharma'"
-											>الشفاء فارما
-											<br/>
+										</div>
+
+
+										<div t-if="o.company_id.id==3">
+										<h2 align="right" >
+											الشفاء فارما
+												</h2> 
+												<h6 align="right">
 											مكتب الشفاء فارما العلمي لدعاية الادوية
+										</h6>
+										</div>
+
+
+
+										<div t-if="o.company_id.id==5">
+										<h2 align="right"> قمة الاتقان																							 										
 										</h2>
-										<h2 align="right" style="font-size: 35px;" t-if="o.company_id.name == 'Tops Alitqan'">توب الاتقان</h2>
-										<h2 align="right" style="font-size: 22px;" t-if="o.company_id.name == 'alshifa'" 
-												>الشفاء
-												<br/> 
+										</div>
+
+
+										<div t-if="o.company_id.id==2">
+										<h2 align="right">
+													الشفاء
+												</h2> 
+												<h6 align="right">
 												مكتب الشفاء العلمي لدعاية الادوية 
-										</h2>
-										<h2 align="right" style="font-size: 22px;" t-if="o.company_id.name == 'Erbil'"
-												>اربيل 
-												<br/>
+											</h6>
+											</div>
+
+										<div t-if="o.company_id.name == 'Erbil'">
+										<h2 align="right">
+												اربيل 										
+												</h2> 
+													<h6 align="right">
 												شركة قمة الاتقان للادوية  و المستحضرات الطبية
-										</h2>
-										<h2 align="right" style="font-size: 22px;" t-if="o.company_id.name == 'Shkoy Newroz'"
-												>Shky Newroz 
-												<br/>
+											</h6>
+											</div>
+										<div t-if="o.company_id.name == 'Shkoy Newroz'">
+										<h2 align="right" 
+												>Shky Newroz</h2> 
+												<h6 align="right">
 												كوكاى ده رمانى شكوى نه وروز
-										</h2>
-	            	</div>
+											</h6>
+											</div>
 
 
-								<div class="text-center" style="width: 20%;">
+
+									</div> 
+
+				
+
+
+									<!-- Duplicate logo and english title to solve right to left issue -->
+							
+							
+							
+							<div class="text-center" style="width: 20%;">
 										<img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" class="img" alt="Logo" style="max-width: 150px; min-width: 50px; max-height: 130px;"/>
 								</div>
 
-								<div class="col-5 text-left mt32" style="width: 40%; margin-right: 10px;">
-										<h2 align="left" style="font-size: 22px;" t-if="o.company_id.name == 'Alshifa Aldaem'"
-									   	  >AlSHIFA Al-Da'em
-												<br/>
-											  AlSHIFA Al-Da'em DrugStore
-										</h2>
-										<h2 align="left" style="font-size: 35px;" t-if="o.company_id.name == 'Alshifa Alnajaf'"
-												>Alshifa Alnajaf
-										</h2>
-										<h2 align="left" style="font-size: 35px;" t-if="o.company_id.name == 'Alshifa Basra'"
-												>Alshifa Basra
-										</h2>
-										<h2 align="left" style="font-size: 22px;" t-if="o.company_id.name == 'Alshifa Pharma'"
-												>ALSHIFA Pharma
-												<br/>
-												ALSHIFA Pharma Scientific Drug  Bureau
-										</h2>
-										<h2 align="left" style="font-size: 35px;" t-if="o.company_id.name == 'Tops Alitqan'"
-										  >Tops Alitqan
-									  </h2>
-										<h2 align="left" style="font-size: 22px;" t-if="o.company_id.name == 'alshifa'"
-												>ALSHIFA
-												<br/>
-												ALSHIFA Scientific Drug  Bureau 
-										</h2>
-										<h2 align="left" style="font-size: 22px;" t-if="o.company_id.name == 'Erbil'"
-												>Erbil 
-												<br/>
-												Tops Al Itkan Company for supplies Drugs 	
-										</h2>
-										<h2 align="left" style="font-size: 22px;" t-if="o.company_id.name == 'Shkoy Newroz'"
-												>Shky Newroz 
-												<br/>
+
+						<div class="col-5 text-left mt32" style="width: 40%; margin-right: 10px;">
+								        <div t-if="o.company_id.id==4"  align="left">
+												<h2>AlSHIFA Al-Da'em</h2>
+													<h6>
+														AlSHIFA Al-Da'em DrugStore
+													</h6>
+										</div>
+
+										<div t-if="o.company_id.id==7" align="left" >
+												<h2 >Alshifa Alnajaf</h2>
+										</div>
+
+										<div t-if="o.company_id.id==6" align="left" >
+												<h2>Alshifa Basra</h2>
+										</div>
+
+
+										<div t-if="o.company_id.id==3"  align="left">
+												<h2>ALSHIFA Pharma</h2> 
+												<h6>ALSHIFA Pharma Scientific Drug  Bureau</h6>
+										</div>
+
+
+
+										<div t-if="o.company_id.id==5" align="left" >
+									  			<h2>Tops Alitqan</h2>
+										</div>
+
+
+										<div t-if="o.company_id.id==2" align="left">
+												<h2>ALSHIFA</h2> 
+												<h6>ALSHIFA Scientific Drug  Bureau </h6>
+											</div>
+
+										<div t-if="o.company_id.name == 'Erbil'" align="left" >
+												<h2>Erbil 	</h2> 
+												<h6>Tops Al Itkan Company for supplies Drugs</h6>
+											</div>
+
+
+
+										<div t-if="o.company_id.name == 'Shkoy Newroz'"  align="left">
+										     <h2>Shky Newroz</h2> 
+												<h6>
 												Shky Newroz DrugStore
-										</h2> 
-								</div>
-	
-								<!-- <div style="border-bottom: 1px solid black; border-top:none"/> -->
-						
-							</div>
-						</div>
-							
-								<!-- <div t-attf-class="article o_report_layout_standard o_company_#{o.company_id.id}_layout"  t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id"> -->
+											  </h6>
+											</div>
+ 
+						</div> 
+				</div>
+		</div>
+	    
 								<div t-attf-class="article o_report_layout_standard o_company_#{o.company_id.id}_layout"  t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
 										<t t-call="web.address_layout"/>
 										<t t-raw="0"/>
 								</div>
-	    
+
+
+
+										<!-- FOOTER -->
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 						<div class="footer o_standard_footer" style="border-top:solid 1px black;">
 							<div class="row" style="width: 100%;">
-									<div class="" style="width: 50%;">
+									
+									<div style="width: 50%;">
 										<p align="left" t-if="o.company_id.name == 'alshifa'">  
 												Address :  Iraq - Baghdad - Hai ALWihda 	<br/>
 												Sec 904 - st.58 - House 23
@@ -250,14 +349,12 @@
 									</div>
 
 							</div>
-				</div>
-				
+				</div>	
 			</t>
     </template>
 
-
-          <!-- MAIN TEMPLATE  -->
-
+        						
+								  <!-- MAIN TEMPLATE  -->
 		<template id="shifaa_saleorder_report" inherit_id="sale.report_saleorder_document">
 
 				<xpath expr="//t[@t-call='web.external_layout']" position="attributes">
@@ -266,20 +363,22 @@
 
 			 <xpath expr="//div[@t-field='doc.partner_id']" position="replace">
 			 		<div class="row">
-            <div class="" style="width: 350px; margin-left: 200px;" align="right" t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
-            <div class="" style="width: 300px; visibility: hidden;"/>
+            			<div style="width: 350px; margin-left: 200px;" align="right" t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
+            			<div style="width: 300px; visibility: hidden;"/>
 					</div>
 			 </xpath>
+
 
 			 <xpath expr="//td[@name='td_name']" position="attributes">
 						<attribute name="style">direction: ltr;</attribute>
 			 </xpath>
-			 
+
+
 				<xpath expr="//div[@name='so_total_summary']" position="before">
 				 	<div class="row col-6" style="margin-bottom: -80px; margin-top: 80px;">
 
-						<table class="table table-sm">
-								<tr class="border-black o_subtotal" style="">
+						<table class="table table-sm text-center">
+								<tr class="border-black o_subtotal">
 										<td><strong>Previous Costumer debit</strong></td>
 										<td class="text-right">
 												<span t-field="doc.partner_id.total_due"/>
@@ -297,7 +396,7 @@
 				</xpath>
 
 				<xpath expr="//div[@name='so_total_summary']" position="after">
-					<table class="table table-sm o_main_table" style="margin-top:200px;">
+					<table class="table table-sm o_main_table" style="margin-top:300px;">
 						<thead>
 							<tr>
 								<th >Accountant</th>
@@ -308,9 +407,8 @@
 							</tr>
 						</thead>
 						</table>
-
 			   </xpath>
-			  
+			   
 
 					<xpath expr="//div[@id='informations']//div[@t-if='doc.user_id.name']" position="after" class="ml-8 float-right">
 						<div t-if="doc.warehouse_location_id.location_id" class="col-auto mw-100 mb-2">
@@ -332,5 +430,9 @@
 						</td>
 					</xpath> 
   </template>
+
+
+
+
   </data>
 </odoo>
