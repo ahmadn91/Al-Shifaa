@@ -224,7 +224,7 @@
 									هاتف: <span align="left" t-field="o.company_id.phone"/>
 								</t>
 								<br/>
-								البريد الإلكتروني: <span t-field="o.company_id.email"/>
+								<span t-field="o.company_id.email"/>:البريد الالكتروني
 							</p>
 
 							<p align="right" t-if="o.company_id.name == 'Alshifa Pharma'">
@@ -236,7 +236,7 @@
 									هاتف: <span align="left" t-field="o.company_id.phone"/>
 								</t>
 								<br/>
-								البريد الإلكتروني: <span t-field="o.company_id.email"/>
+								<span t-field="o.company_id.email"/>:البريد الالكتروني
 							</p>
 
 							<p align="right" t-if="o.company_id.name == 'Alshifa Aldaem'">
@@ -247,7 +247,7 @@
 									هاتف: <span align="left" t-field="o.company_id.phone"/>
 								</t>
 								<br/>
-								البريد الإلكتروني: <span t-field="o.company_id.email"/>
+							    <span t-field="o.company_id.email"/>:البريد الالكتروني
 							</p>
 
 							<p align="right" t-if="o.company_id.name == 'Erbil'">
@@ -260,7 +260,7 @@
 									هاتف: <span align="left" t-field="o.company_id.phone"/>
 								</t>
 								<br/>
-								البريد الإلكتروني: <span t-field="o.company_id.email"/>
+								<span t-field="o.company_id.email"/>:البريد الالكتروني
 							</p>
 
 							<p align="right" t-if="o.company_id.name == 'Erbil' or o.company_id.name == 'Shkoy Newroz'">
@@ -273,7 +273,7 @@
 									هاتف: <span align="left" t-field="o.company_id.phone"/>
 								</t>
 								<br/>
-								البريد الإلكتروني: <span t-field="o.company_id.email"/>
+								<span t-field="o.company_id.email"/>:البريد الالكتروني
 							</p>
 						</div>
 
