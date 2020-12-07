@@ -197,18 +197,35 @@
 								العنوان :
 								العراق - بغداد حي الوحدة<br/>
 								محلة ٩٠٤-شارع ٥٨ بناية ٣٢
+															<br/>
+								<t t-if="o.company_id.phone">
+									هاتف: <span align="left" t-field="o.company_id.phone"/>
+								</t>
+								<br/>
+								البريد الإلكتروني: <span t-field="o.company_id.email"/>
 							</p>
 
 							<p align="right" t-if="o.company_id.name == 'Alshifa Pharma'">
 								العنوان :
 								العراق - بغداد حي الوحدة <br/>
 								محلة ٩٠٤- زقاق ١٧ رقم العقار ٣٢\١
+															<br/>
+								<t t-if="o.company_id.phone">
+									هاتف: <span align="left" t-field="o.company_id.phone"/>
+								</t>
+								<br/>
+								البريد الإلكتروني: <span t-field="o.company_id.email"/>
 							</p>
 
 							<p align="right" t-if="o.company_id.name == 'Alshifa Aldaem'">
 								العنوان :
 								العراق - بغداد حي الوحدة<br/>
-								محلة ٩٠٤-شارع ٥٨ بناية ٣٢
+								محلة ٩٠٤-شارع ٥٨ بناية ٣٢<br/>
+								<t t-if="o.company_id.phone">
+									هاتف: <span align="left" t-field="o.company_id.phone"/>
+								</t>
+								<br/>
+								البريد الإلكتروني: <span t-field="o.company_id.email"/>
 							</p>
 
 							<p align="right" t-if="o.company_id.name == 'Erbil'">
@@ -216,6 +233,12 @@
 								عيراق - هه ولير	 <br/>
 								<br/>
 								كه رةكي مستوفي\عه ره ب-خانوو زماره ٥٠\٥٤٠ نهومي يه كه م
+								<br/>
+								<t t-if="o.company_id.phone">
+									هاتف: <span align="left" t-field="o.company_id.phone"/>
+								</t>
+								<br/>
+								البريد الإلكتروني: <span t-field="o.company_id.email"/>
 							</p>
 
 							<p align="right" t-if="o.company_id.name == 'Erbil' or o.company_id.name == 'Shkoy Newroz'">
@@ -223,9 +246,7 @@
 								عيراق - هه ولير	 <br/>
 								<br/>
 								كه رةكي مستوفي\عه ره ب-خانوو زماره ٥٠\٥٤٨ نهومي يه كه م
-							</p>
-
-							<p align="right">
+								<br/>
 								<t t-if="o.company_id.phone">
 									هاتف: <span align="left" t-field="o.company_id.phone"/>
 								</t>
