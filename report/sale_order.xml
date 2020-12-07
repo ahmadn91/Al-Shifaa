@@ -163,27 +163,49 @@
 						<div style="width: 50%;">
 							<p align="left" t-if="o.company_id.name == 'alshifa'">
 								Address :  Iraq - Baghdad - Hai ALWihda 	<br/>
-								Sec 904 - st.58 - House 23
+								Sec 904 - st.58 - House 23<br/>
+								<t t-if="o.company_id.phone">
+									Mobile: <span t-field="o.company_id.phone"/>
+								</t>
+								<br/>
+								E-mail: <span t-field="o.company_id.email"/>
 							</p>
 
 							<p align="left" t-if="o.company_id.name == 'Alshifa Pharma'">
 								Address : Iraq - Baghdad - Hai ALWihda 	<br/>
 								Sec 904 - st.17 - House 23/1
+								<br/>
+								<t t-if="o.company_id.phone">
+									Mobile: <span t-field="o.company_id.phone"/>
+								</t>
+								<br/>
+								E-mail: <span t-field="o.company_id.email"/>
 							</p>
 
 							<p align="left" t-if="o.company_id.name == 'Alshifa Aldaem'">
 								Address :  Iraq - Baghdad - Hai ALWihda<br/>
 								Sec 904 - st.58 - House 23
+								<br/>
+								<t t-if="o.company_id.phone">
+									Mobile: <span t-field="o.company_id.phone"/>
+								</t>
+								<br/>
+								E-mail: <span t-field="o.company_id.email"/>
 							</p>
 
 							<p align="left" t-if="o.company_id.name == 'Erbil' or o.company_id.name == 'Shkoy Newroz'">
 								Address : Iraq - Erbil
 								<br/>
-								Mustawfi street/Arab, house num 548/5 second floor
+								Mustawfi street/Arab, house num 548/5 second floor<br/>
+								<t t-if="o.company_id.phone">
+									Mobile: <span t-field="o.company_id.phone"/>
+								</t>
+								<br/>
+								E-mail: <span t-field="o.company_id.email"/>
 							</p>
 
 							<p align="left">
-								<t t-if="o.company_id.phone">
+								<t t-if="o.company_id.name == 'Tops Alitqan'">
 									Mobile: <span t-field="o.company_id.phone"/>
 								</t>
 								<br/>
