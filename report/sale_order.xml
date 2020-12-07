@@ -160,7 +160,7 @@
 
 				<div class="footer o_standard_footer" style="border-top:solid 1px black;direction:ltr;">
 					<div class="row" style="width: 100%;direction:ltr;">
-						<div style="width: 50%;">
+						<div style="width: 47%;">
 							<p align="left" t-if="o.company_id.name == 'alshifa'">
 								Address :  Iraq - Baghdad - Hai ALWihda 	<br/>
 								Sec 904 - st.58 - House 23
@@ -192,7 +192,7 @@
 
 						</div>
 
-						<div class="" style="width: 50%;direction:ltr;">
+						<div class="" style="width: 47%;direction:ltr;">
 							<p align="right" t-if="o.company_id.name == 'alshifa'">
 								العنوان :
 								العراق - بغداد حي الوحدة<br/>
