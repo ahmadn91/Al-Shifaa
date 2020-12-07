@@ -91,7 +91,7 @@
 
 
 
-						<div class="text-right mt32" style="width: 35%;">
+						<div class="text-right mt32" style="width: 40%;">
 
 							<div t-if="o.company_id.id==4">
 								<h2 align="right">الشفاء الدائم</h2>
