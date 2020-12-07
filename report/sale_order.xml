@@ -44,7 +44,7 @@
 								<h2>ALSHIFA Pharma
 								</h2>
 								<h6>
-									ALSHIFA Pharma Scientific Drug  Bureau
+									ALSHIFA Pharma Scientific Drug Bureau
 								</h6>
 							</div>
 
@@ -59,7 +59,7 @@
 							<div t-if="o.company_id.id==2" align="left">
 								<h2>ALSHIFA</h2>
 								<h6>
-									ALSHIFA Scientific Drug  Bureau
+									ALSHIFA Scientific Drug Bureau
 								</h6>
 							</div>
 
@@ -94,12 +94,8 @@
 						<div class="text-right mt32" style="width: 35%; margin-right: 10px;">
 
 							<div t-if="o.company_id.id==4">
-								<h2 align="right">
-									الشفاء الدائم
-								</h2>
-								<h6 align="right">
-									مذخر ادوية الشفاء الدائم
-								</h6>
+								<h2 align="right">الشفاء الدائم</h2>
+								<h6 align="right">مذخر ادوية الشفاء الدائم</h6>
 							</div>
 
 							<div t-if="o.company_id.id==7">
@@ -117,38 +113,23 @@
 
 
 							<div t-if="o.company_id.id==3">
-								<h2 align="right">
-									الشفاء فارما
-								</h2>
-								<h6 align="right">
-									مكتب الشفاء فارما العلمي لدعاية الادوية
-								</h6>
+								<h2 align="right">الشفاء فارما</h2>
+								<h6 align="right">مكتب الشفاء فارما العلمي لدعاية الادوية</h6>
 							</div>
 
-
-
 							<div t-if="o.company_id.id==5">
-								<h2 align="right"> قمة الاتقان
-								</h2>
+								<h2 align="right">قمة الاتقان</h2>
 							</div>
 
 
 							<div t-if="o.company_id.id==2">
-								<h2 align="right">
-									الشفاء
-								</h2>
-								<h6 align="right">
-									مكتب الشفاء العلمي لدعاية الادوية
-								</h6>
+								<h2 align="right">الشفاء</h2>
+								<h6 align="right">مكتب الشفاء العلمي لدعاية الادوية</h6>
 							</div>
 
 							<div t-if="o.company_id.name == 'Erbil'">
-								<h2 align="right">
-									اربيل
-								</h2>
-								<h6 align="right">
-									شركة قمة الاتقان للادوية  و المستحضرات الطبية
-								</h6>
+								<h2 align="right">اربيل</h2>
+								<h6 align="right">شركة قمة الاتقان للادوية  و المستحضرات الطبية</h6>
 							</div>
 							<div t-if="o.company_id.name == 'Shkoy Newroz'">
 								<h2 align="right">Shky Newroz</h2>
@@ -190,8 +171,8 @@
 								Sec 904 - st.17 - House 23/1
 							</p>
 
-							<p align="left" t-if="o.company_id.name == 'alshifa'">
-								Address :  Iraq - Baghdad - Hai ALWihda 	<br/>
+							<p align="left" t-if="o.company_id.name == 'Alshifa Aldaem'">
+								Address :  Iraq - Baghdad - Hai ALWihda<br/>
 								Sec 904 - st.58 - House 23
 							</p>
 
@@ -224,7 +205,7 @@
 								محلة ٩٠٤- زقاق ١٧ رقم العقار ٣٢\١
 							</p>
 
-							<p align="right" t-if="o.company_id.name == 'alshifa'">
+							<p align="right" t-if="o.company_id.name == 'Alshifa Aldaem'">
 								العنوان :
 								العراق - بغداد حي الوحدة<br/>
 								محلة ٩٠٤-شارع ٥٨ بناية ٣٢
