@@ -20,7 +20,7 @@
 
 					<div class="mt12 row" id="informations" style="width:100%;font-size: 30px;">
 
-						<div class="text-left mt32" style="width: 40%;">
+						<div class="text-left mt32" style="width: 42%;">
 
 							<div t-if="o.company_id.id== 4" align="left">
 								<h2>AlSHIFA Al-Da'em</h2>
