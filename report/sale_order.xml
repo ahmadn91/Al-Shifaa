@@ -193,7 +193,7 @@
 								E-mail: <span t-field="o.company_id.email"/>
 							</p>
 
-							<p align="left" t-if="o.company_id.name == 'Erbil' or o.company_id.name == 'Shkoy Newroz'">
+							<p align="left" t-if="o.company_id.name == 'Erbil' or o.company_id.name == 'Shkoy'">
 								Address : Iraq - Erbil
 								<br/>
 								Mustawfi street/Arab, house num 548/5 second floor<br/>
@@ -263,7 +263,7 @@
 								<span t-field="o.company_id.email"/>:البريد الالكتروني
 							</p>
 
-							<p align="right" t-if="o.company_id.name == 'Erbil' or o.company_id.name == 'Shkoy Newroz'">
+							<p align="right" t-if="o.company_id.name == 'Erbil' or o.company_id.name == 'Shkoy'">
 								العنوان :
 								عيراق - هه ولير	 <br/>
 								<br/>
