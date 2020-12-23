@@ -73,10 +73,10 @@
 
 
 
-							<div t-if="o.company_id.name == 'Shkoy Newroz'" align="left">
+							<div t-if="o.company_id.name == 'Shkoy'" align="left">
 								<h2>Shky Newroz</h2>
 								<h6>
-									Shky Newroz DrugStore
+									Shkoy Newroz
 								</h6>
 							</div>
 
@@ -131,8 +131,8 @@
 								<h2 align="right">اربيل</h2>
 								<h6 align="right">شركة قمة الاتقان للادوية  و المستحضرات الطبية</h6>
 							</div>
-							<div t-if="o.company_id.name == 'Shkoy Newroz'">
-								<h2 align="right">Shky Newroz</h2>
+							<div t-if="o.company_id.name == 'Shkoy'">
+								<h2 align="right">Shkoy Newroz</h2>
 								<h6 align="right">
 									كوكاى ده رمانى شكوى نه وروز
 								</h6>
