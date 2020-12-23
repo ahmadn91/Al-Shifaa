@@ -200,8 +200,6 @@
 								<t t-if="o.company_id.phone">
 									Mobile: <span t-field="o.company_id.phone"/>
 								</t>
-								<br/>
-								E-mail: <span t-field="o.company_id.email"/>
 							</p>
 
 							<p align="left">
@@ -266,19 +264,13 @@
 							<p align="right" t-if="o.company_id.name == 'Erbil' or o.company_id.name == 'Shkoy'">
 								العنوان :
 								عيراق - هه ولير	 <br/>
-								<br/>
 								كه رةكي مستوفي\عه ره ب-خانوو زماره ٥٠\٥٤٨ نهومي يه كه م
 								<br/>
 								<t t-if="o.company_id.phone">
 									هاتف: <span align="left" t-field="o.company_id.phone"/>
 								</t>
-								<br/>
-								<span t-field="o.company_id.email"/>:البريد الالكتروني
 							</p>
 						</div>
-
-
-
 					</div>
 				</div>
 			</t>
