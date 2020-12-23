@@ -267,7 +267,7 @@
 								كه رةكي مستوفي\عه ره ب-خانوو زماره ٥٠\٥٤٨ نهومي يه كه م
 								<br/>
 								<t t-if="o.company_id.phone">
-									هاتف: <span align="left" t-field="o.company_id.phone"/>
+									رەقه‌می موبایل: <span align="left" t-field="o.company_id.phone"/>
 								</t>
 							</p>
 						</div>
