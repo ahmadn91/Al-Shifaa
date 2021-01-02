@@ -24,6 +24,11 @@
                   <field name="customer_debit"/>
                   <field name="farthest_due_date"/>
                 </field>
+                <xpath expr="//tree//field[@name='name']" position="after">
+                    <field name="lot_date"/>
+                    <field name="lot_note"/>
+                    
+                </xpath>
             </field>
     </record>
 

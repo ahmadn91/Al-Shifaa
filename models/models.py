@@ -113,3 +113,21 @@ class StockImmediateTransferExt(models.TransientModel):
         self.notify(rec_id = rec.id,rec_name=rec.name)
         res = super(StockImmediateTransferExt,self).process()
         return res
+
+
+class SaleOrderLineInherit(models.Model):
+    _inherit="sale.order.line"
+
+
+    
+    lot_date = fields.Datetime(string="Lot Expire Date")
+    lot_note = fields.Html(string="Lot Note")
+
+    @api.constrains("lot_id")
+    def compute_lot_date(self):
+        for line in self:
+            if line.lot_id:
+                line.lot_date = line.lot_id.life_date
+                line.lot_note = line.lot_id.note
+
+

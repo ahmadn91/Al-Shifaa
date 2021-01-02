@@ -1,0 +1,22 @@
+<odoo>
+    <data>
+        <record id="Sale_order_inh_A_form" model="ir.ui.view">
+            <field name="name">Sale_order_inh_A.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+                
+            </field>
+        </record>
+
+
+
+
+
+
+    </data>
+
+
+
+
+</odoo>
