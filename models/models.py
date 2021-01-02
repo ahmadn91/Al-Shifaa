@@ -30,9 +30,15 @@ class StockPickingExt(models.Model): # By AhmedNaseem, Used to block delivery va
             items = str(products)
             raise UserError(_("You have processed more than what was initially planned for the products %s " % items)) 
         else:
-            res = super(StockPickingExt,self).button_validate()
-            return res
+            # By Mohammed Saeb, For sending the lot id to sale order line
+            if self.sale_id:
+                for line in self.move_line_ids_without_package:
+                    if line.lot_id:
+                        sale_order_line_id = self.sale_id.order_line.search([('product_id', '=', line.product_id.id)])
+                        sale_order_line_id.write({'lot_id': line.lot_id.id})
 
+            res = super(StockPickingExt, self).button_validate()
+            return res
 
     
 
@@ -63,38 +69,39 @@ class StockReturnExt(models.TransientModel):
 
 
 
+
 class SaleOrderExt(models.Model):
     _inherit="sale.order"
 
-    customer_debit = fields.Float(string="Customer Debit",compute="get_customer_debit_details",readonly=True)
-    farthest_due_date = fields.Date(string="farthest Due",readonly=True)
+    current_customer_debit = fields.Monetary(string="Cuurent Debit", compute="get_customer_debit_details")
+    farthest_due_date = fields.Date(string="farthest Due", compute="get_customer_debit_details")
+    warehouse_location_id = fields.Many2one('stock.picking', compute='calc_warehouse_location_id')
 
-
+    @api.depends("partner_id")
+    def calc_warehouse_location_id(self):
+        transfers=self.env["stock.picking"].search([("origin","=",self.name)],limit=1)
+        self.warehouse_location_id = transfers.id
 
     @api.onchange("partner_id")
     def get_customer_debit_details(self):
-        amount=0
-        dates=[]
-        rec = self.env["account.move"].search([("invoice_partner_display_name","=",self.partner_id.name)])
-        for item in rec:
-            amount += item.amount_total_signed
-            dates.append(item.invoice_date_due)
-        if amount:
-            self.customer_debit = amount
-        else:
-            self.customer_debit = 0
-        if dates:
-            self.farthest_due_date = dates[0]
-        else:
-            self.farthest_due_date=""
-        
+        # Get Current Debit
+        self.current_customer_debit = self.partner_id.total_due + self.amount_total
 
+        # Get lastest Debit Date
+        dates=[]
+        rec = self.env["account.move"].search([("invoice_partner_display_name","=",self.partner_id.name)], order="invoice_date_due desc")
+        if rec:
+            self.farthest_due_date = rec[0].invoice_date_due
+        else:
+            self.farthest_due_date= False
+
+
+class SaleOrderLine(models.Model):
+    _inherit = "sale.order.line"
+    lot_id = fields.Many2one('stock.production.lot', readonly=True)
 
 class StockImmediateTransferExt(models.TransientModel):
     _inherit="stock.immediate.transfer"
-
-
-
 
     def notify(self,rec_id="",rec_name=""): #takes in record_id and record_name
         try:
@@ -114,6 +121,7 @@ class StockImmediateTransferExt(models.TransientModel):
         res = super(StockImmediateTransferExt,self).process()
         return res
 
+<<<<<<< HEAD
 
 class SaleOrderLineInherit(models.Model):
     _inherit="sale.order.line"
@@ -130,4 +138,9 @@ class SaleOrderLineInherit(models.Model):
                 line.lot_date = line.lot_id.life_date
                 line.lot_note = line.lot_id.note
 
+=======
+class HRemployee(models.Model):
+    _inherit = "hr.employee"
+    starting_date = fields.Date(related="contract_id.date_start")
+>>>>>>> 44069525690ee571a90547796985697661c2bdad
 
