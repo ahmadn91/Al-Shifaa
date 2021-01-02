@@ -121,7 +121,6 @@ class StockImmediateTransferExt(models.TransientModel):
         res = super(StockImmediateTransferExt,self).process()
         return res
 
-<<<<<<< HEAD
 
 class SaleOrderLineInherit(models.Model):
     _inherit="sale.order.line"
@@ -138,9 +137,7 @@ class SaleOrderLineInherit(models.Model):
                 line.lot_date = line.lot_id.life_date
                 line.lot_note = line.lot_id.note
 
-=======
 class HRemployee(models.Model):
     _inherit = "hr.employee"
     starting_date = fields.Date(related="contract_id.date_start")
->>>>>>> 44069525690ee571a90547796985697661c2bdad
 
