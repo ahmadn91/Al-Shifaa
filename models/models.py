@@ -91,8 +91,8 @@ class SaleOrderExt(models.Model):
 
             # Get lastest Debit Date
             dates=[]
-            mode_id = self.env["account.move"].search([("invoice_partner_display_name","=",sale_order.partner_id.name)], order="invoice_date_due desc", limit=1)
-            if rec:
+            move_id = self.env["account.move"].search([("invoice_partner_display_name","=",sale_order.partner_id.name)], order="invoice_date_due desc", limit=1)
+            if move_id:
                 sale_order.farthest_due_date = move_id.invoice_date_due
             else:
                 sale_order.farthest_due_date= False
