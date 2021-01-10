@@ -79,8 +79,9 @@ class SaleOrderExt(models.Model):
 
     @api.depends("partner_id")
     def calc_warehouse_location_id(self):
-        transfers=self.env["stock.picking"].search([("origin","=",self.name)],limit=1)
-        self.warehouse_location_id = transfers.id
+        for sale_order in self:
+            transfers=self.env["stock.picking"].search([("origin","=",sale_order.name)],limit=1)
+            sale_order.warehouse_location_id = transfers.id
 
     @api.onchange("partner_id")
     def get_customer_debit_details(self):
