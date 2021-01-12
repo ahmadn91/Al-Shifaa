@@ -96,9 +96,9 @@ class SaleOrderExt(models.Model):
             self.farthest_due_date= False
 
 
-class SaleOrderLine(models.Model):
-    _inherit = "sale.order.line"
-    lot_id = fields.Many2one('stock.production.lot', readonly=True)
+# class SaleOrderLine(models.Model):
+#     _inherit = "sale.order.line"
+#     lot_id = fields.Many2one('stock.production.lot', readonly=True)
 
 class StockImmediateTransferExt(models.TransientModel):
     _inherit="stock.immediate.transfer"
@@ -127,8 +127,8 @@ class SaleOrderLineInherit(models.Model):
 
 
     
-    lot_date = fields.Datetime(string="Lot Expire Date")
-    lot_note = fields.Html(string="Lot Note")
+    lot_date = fields.Datetime(string="Lot Expire Date",readonly=True)
+    lot_note = fields.Html(string="Lot Note",readonly=True)
 
     @api.constrains("lot_id")
     def compute_lot_date(self):
