@@ -12,35 +12,33 @@
 
 		<!-- HEADER TEMPLATE -->
 		<template id="custom_external_layout">
-
-			<t t-foreach="docs" t-as="o">
 				<t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)"/>
 				<!-- HEADER -->
-				<div t-attf-class="header o_company_#{o.company_id.id}_layout"  style="border-bottom:solid 1px black;direction:ltr;">
+				<div t-attf-class="header o_company_#{doc.company_id.id}_layout"  style="border-bottom:solid 1px black;direction:ltr;">
 
 					<div class="mt12 row" id="informations" style="width:100%;font-size: 30px;">
 
 						<div class="text-left mt32" style="width: 42%;">
 
-							<div t-if="o.company_id.id== 4" align="left">
+							<div t-if="doc.company_id.id== 4" align="left">
 								<h2>AlSHIFA Al-Da'em</h2>
 								<h6>
 									AlSHIFA Al-Da'em DrugStore
 								</h6>
 							</div>
 
-							<div t-if="o.company_id.id==7" align="left">
+							<div t-if="doc.company_id.id==7" align="left">
 								<h2>Alshifa Alnajaf
 								</h2>
 							</div>
 
-							<div t-if="o.company_id.id==6" align="left">
+							<div t-if="doc.company_id.id==6" align="left">
 								<h2>Alshifa Basra
 								</h2>
 							</div>
 
 
-							<div t-if="o.company_id.id==3" align="left">
+							<div t-if="doc.company_id.id==3" align="left">
 								<h2>ALSHIFA Pharma
 								</h2>
 								<h6>
@@ -50,13 +48,13 @@
 
 
 
-							<div t-if="o.company_id.id==5" align="left">
+							<div t-if="doc.company_id.id==5" align="left">
 								<h2>Tops Alitqan
 								</h2>
 							</div>
 
 
-							<div t-if="o.company_id.id==2" align="left">
+							<div t-if="doc.company_id.id==2" align="left">
 								<h2>ALSHIFA</h2>
 								<h6>
 									ALSHIFA Scientific Drug Bureau
@@ -64,7 +62,7 @@
 							</div>
 
 
-							<div t-if="o.company_id.name == 'Erbil'" align="left">
+							<div t-if="doc.company_id.name == 'Erbil'" align="left">
 								<h2>Erbil 	</h2>
 								<h6>
 									Tops Al Itkan Company for supplies Drugs
@@ -73,7 +71,7 @@
 
 
 
-							<div t-if="o.company_id.name == 'Shkoy'" align="left">
+							<div t-if="doc.company_id.name == 'Shkoy'" align="left">
 								<h2>Shky Newroz</h2>
 								<h6>
 									Shkoy Newroz
@@ -86,52 +84,52 @@
 
 
 						<div class="text-center" style="margin-top: 0px; width: 25%;">
-							<img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" class="img" alt="Logo" style="max-width: 150px; min-width: 50px; max-height: 130px;"/>
+							<img t-if="doc.company_id.logo" t-att-src="image_data_uri(doc.company_id.logo)" class="img" alt="Logo" style="max-width: 150px; min-width: 50px; max-height: 130px;"/>
 						</div>
 
 
 
 						<div class="text-right mt32" style="width: 37%;">
 
-							<div t-if="o.company_id.id==4">
+							<div t-if="doc.company_id.id==4">
 								<h2 align="right">الشفاء الدائم</h2>
 								<h6 align="right">مذخر ادوية الشفاء الدائم</h6>
 							</div>
 
-							<div t-if="o.company_id.id==7">
+							<div t-if="doc.company_id.id==7">
 								<h2 align="right">
 									دائم النجف
 								</h2>
 							</div>
 
 
-							<div t-if="o.company_id.id==6">
+							<div t-if="doc.company_id.id==6">
 								<h2 align="right">
 									دائم البصرة
 								</h2>
 							</div>
 
 
-							<div t-if="o.company_id.id==3">
+							<div t-if="doc.company_id.id==3">
 								<h2 align="right">الشفاء فارما</h2>
 								<h6 align="right">مكتب الشفاء فارما العلمي لدعاية الادوية</h6>
 							</div>
 
-							<div t-if="o.company_id.id==5">
+							<div t-if="doc.company_id.id==5">
 								<h2 align="right">قمة الاتقان</h2>
 							</div>
 
 
-							<div t-if="o.company_id.id==2">
+							<div t-if="doc.company_id.id==2">
 								<h2 align="right">الشفاء</h2>
 								<h6 align="right">مكتب الشفاء العلمي لدعاية الادوية</h6>
 							</div>
 
-							<div t-if="o.company_id.name == 'Erbil'">
+							<div t-if="doc.company_id.name == 'Erbil'">
 								<h2 align="right">اربيل</h2>
 								<h6 align="right">شركة قمة الاتقان للادوية  و المستحضرات الطبية</h6>
 							</div>
-							<div t-if="o.company_id.name == 'Shkoy'">
+							<div t-if="doc.company_id.name == 'Shkoy'">
 								<h2 align="right">Shkoy Newroz</h2>
 								<h6 align="right">
 									كوكاى ده رمانى شكوى نه وروز
@@ -143,13 +141,13 @@
 						<t t-if="doc.partner_id.lang == 'ar_001'">
 
 							<div class="text-center" style="margin-top: 0px; width: 25%;">
-								<img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" class="img" alt="Logo" style="max-width: 150px; min-width: 50px; max-height: 130px;"/>
+								<img t-if="doc.company_id.logo" t-att-src="image_data_uri(doc.company_id.logo)" class="img" alt="Logo" style="max-width: 150px; min-width: 50px; max-height: 130px;"/>
 							</div>
 						</t>
 					</div>
 				</div>
 
-				<div t-attf-class="article o_report_layout_standard o_company_#{o.company_id.id}_layout" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+				<div t-attf-class="article o_report_layout_standard o_company_#{doc.company_id.id}_layout" t-att-data-oe-model="o and doc._name" t-att-data-oe-id="o and doc.id" t-att-data-oe-lang="o and doc.env.context.get('lang')">
 					<t t-call="web.address_layout"/>
 					<t t-raw="0"/>
 				</div>
@@ -161,119 +159,118 @@
 				<div class="footer o_standard_footer" style="border-top:solid 1px black;direction:ltr;">
 					<div class="row" style="width: 100%;direction:ltr;">
 						<div style="width: 50%;">
-							<p align="left" t-if="o.company_id.name == 'alshifa'">
+							<p align="left" t-if="doc.company_id.name == 'alshifa'">
 								Address :  Iraq - Baghdad - Hai ALWihda 	<br/>
 								Sec 904 - st.58 - House 23<br/>
-								<t t-if="o.company_id.phone">
-									Mobile: <span t-field="o.company_id.phone"/>
+								<t t-if="doc.company_id.phone">
+									Mobile: <span t-field="doc.company_id.phone"/>
 								</t>
 								<br/>
-								E-mail: <span t-field="o.company_id.email"/>
+								E-mail: <span t-field="doc.company_id.email"/>
 							</p>
 
-							<p align="left" t-if="o.company_id.name == 'Alshifa Pharma'">
+							<p align="left" t-if="doc.company_id.name == 'Alshifa Pharma'">
 								Address : Iraq - Baghdad - Hai ALWihda 	<br/>
 								Sec 904 - st.17 - House 23/1
 								<br/>
-								<t t-if="o.company_id.phone">
-									Mobile: <span t-field="o.company_id.phone"/>
+								<t t-if="doc.company_id.phone">
+									Mobile: <span t-field="doc.company_id.phone"/>
 								</t>
 								<br/>
-								E-mail: <span t-field="o.company_id.email"/>
+								E-mail: <span t-field="doc.company_id.email"/>
 							</p>
 
-							<p align="left" t-if="o.company_id.name == 'Alshifa Aldaem'">
+							<p align="left" t-if="doc.company_id.name == 'Alshifa Aldaem'">
 								Address :  Iraq - Baghdad - Hai ALWihda<br/>
 								Sec 904 - st.58 - House 23
 								<br/>
-								<t t-if="o.company_id.phone">
-									Mobile: <span t-field="o.company_id.phone"/>
+								<t t-if="doc.company_id.phone">
+									Mobile: <span t-field="doc.company_id.phone"/>
 								</t>
 								<br/>
-								E-mail: <span t-field="o.company_id.email"/>
+								E-mail: <span t-field="doc.company_id.email"/>
 							</p>
 
-							<p align="left" t-if="o.company_id.name == 'Erbil' or o.company_id.name == 'Shkoy'">
+							<p align="left" t-if="doc.company_id.name == 'Erbil' or doc.company_id.name == 'Shkoy'">
 								Address : Iraq - Erbil
 								<br/>
 								Mustawfi street/Arab, house num 548/5 second floor<br/>
-								<t t-if="o.company_id.phone">
-									Mobile: <span t-field="o.company_id.phone"/>
+								<t t-if="doc.company_id.phone">
+									Mobile: <span t-field="doc.company_id.phone"/>
 								</t>
 							</p>
 
 							<p align="left">
-								<t t-if="o.company_id.name == 'Tops Alitqan'">
-									Mobile: <span t-field="o.company_id.phone"/>
+								<t t-if="doc.company_id.name == 'Tops Alitqan'">
+									Mobile: <span t-field="doc.company_id.phone"/>
 								</t>
 								<br/>
-								E-mail: <span t-field="o.company_id.email"/>
+								E-mail: <span t-field="doc.company_id.email"/>
 							</p>
 
 						</div>
 
 						<div class="" style="width: 53%;direction:ltr;">
-							<p align="right" t-if="o.company_id.name == 'alshifa'">
+							<p align="right" t-if="doc.company_id.name == 'alshifa'">
 								العنوان :
 								العراق - بغداد حي الوحدة<br/>
 								محلة ٩٠٤-شارع ٥٨ بناية ٣٢
 															<br/>
-								<t t-if="o.company_id.phone">
-									هاتف: <span align="left" t-field="o.company_id.phone"/>
+								<t t-if="doc.company_id.phone">
+									هاتف: <span align="left" t-field="doc.company_id.phone"/>
 								</t>
 								<br/>
-								<span t-field="o.company_id.email"/>:البريد الالكتروني
+								<span t-field="doc.company_id.email"/>:البريد الالكتروني
 							</p>
 
-							<p align="right" t-if="o.company_id.name == 'Alshifa Pharma'">
+							<p align="right" t-if="doc.company_id.name == 'Alshifa Pharma'">
 								العنوان :
 								العراق - بغداد حي الوحدة <br/>
 								محلة ٩٠٤- زقاق ١٧ رقم العقار ٣٢\١
 															<br/>
-								<t t-if="o.company_id.phone">
-									هاتف: <span align="left" t-field="o.company_id.phone"/>
+								<t t-if="doc.company_id.phone">
+									هاتف: <span align="left" t-field="doc.company_id.phone"/>
 								</t>
 								<br/>
-								<span t-field="o.company_id.email"/>:البريد الالكتروني
+								<span t-field="doc.company_id.email"/>:البريد الالكتروني
 							</p>
 
-							<p align="right" t-if="o.company_id.name == 'Alshifa Aldaem'">
+							<p align="right" t-if="doc.company_id.name == 'Alshifa Aldaem'">
 								العنوان :
 								العراق - بغداد حي الوحدة<br/>
 								محلة ٩٠٤-شارع ٥٨ بناية ٣٢<br/>
-								<t t-if="o.company_id.phone">
-									هاتف: <span align="left" t-field="o.company_id.phone"/>
+								<t t-if="doc.company_id.phone">
+									هاتف: <span align="left" t-field="doc.company_id.phone"/>
 								</t>
 								<br/>
-							    <span t-field="o.company_id.email"/>:البريد الالكتروني
+							    <span t-field="doc.company_id.email"/>:البريد الالكتروني
 							</p>
 
-							<p align="right" t-if="o.company_id.name == 'Erbil'">
+							<p align="right" t-if="doc.company_id.name == 'Erbil'">
 								العنوان :
 								عيراق - هه ولير	 <br/>
 								<br/>
 								كه رةكي مستوفي\عه ره ب-خانوو زماره ٥٠\٥٤٠ نهومي يه كه م
 								<br/>
-								<t t-if="o.company_id.phone">
-									هاتف: <span align="left" t-field="o.company_id.phone"/>
+								<t t-if="doc.company_id.phone">
+									هاتف: <span align="left" t-field="doc.company_id.phone"/>
 								</t>
 								<br/>
-								<span t-field="o.company_id.email"/>:البريد الالكتروني
+								<span t-field="doc.company_id.email"/>:البريد الالكتروني
 							</p>
 
-							<p align="right" t-if="o.company_id.name == 'Erbil' or o.company_id.name == 'Shkoy'">
+							<p align="right" t-if="doc.company_id.name == 'Erbil' or doc.company_id.name == 'Shkoy'">
 								العنوان :
 								عيراق - هه ولير	 <br/>
 								كه رةكي مستوفي\عه ره ب-خانوو زماره ٥٠\٥٤٨ نهومي يه كه م
 								<br/>
-								<t t-if="o.company_id.phone">
-									رەقه‌می موبایل: <span align="left" t-field="o.company_id.phone"/>
+								<t t-if="doc.company_id.phone">
+									رەقه‌می موبایل: <span align="left" t-field="doc.company_id.phone"/>
 								</t>
 							</p>
 						</div>
 					</div>
 				</div>
-			</t>
 		</template>
 
 
