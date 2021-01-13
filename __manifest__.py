@@ -27,7 +27,7 @@
         # 'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
-        'report/sale_order.xml',
+        #'report/sale_order.xml',
         
         
     ],
