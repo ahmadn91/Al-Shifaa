@@ -14,7 +14,7 @@
 					<span t-field="move.lot_id" />
 				</td>
 				<td class="text-center">
-					<span t-field="move.lot_id.expiration_date" />
+					<span t-field="move.lot_id.lot_date" />
 				</td>
 			</xpath>  
      </template>
