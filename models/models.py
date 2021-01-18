@@ -31,11 +31,11 @@ class StockPickingExt(models.Model): # By AhmedNaseem, Used to block delivery va
             raise UserError(_("You have processed more than what was initially planned for the products %s " % items)) 
         else:
             # By Mohammed Saeb, For sending the lot id to sale order line
-            if self.sale_id:
-                for line in self.move_line_ids_without_package:
-                    if line.lot_id:
-                        sale_order_line_id = self.sale_id.order_line.search([('product_id', '=', line.product_id.id)])
-                        sale_order_line_id.write({'lot_id': line.lot_id.id})
+            # if self.sale_id:
+            #     for line in self.move_line_ids_without_package:
+            #         if line.lot_id:
+            #             sale_order_line_id = self.sale_id.order_line.search([('product_id', '=', line.product_id.id)])
+            #             sale_order_line_id.write({'lot_id': line.lot_id.id})
 
             res = super(StockPickingExt, self).button_validate()
             return res
@@ -126,18 +126,16 @@ class StockImmediateTransferExt(models.TransientModel):
 
 class SaleOrderLineInherit(models.Model):
     _inherit="sale.order.line"
-
-
     
-    lot_date = fields.Datetime(string="Lot Expire Date",readonly=True)
-    lot_note = fields.Html(string="Lot Note",readonly=True)
+    lot_date = fields.Datetime(string="Lot Expire Date",readonly=True, related="lot_id.expiration_date")
+    lot_note = fields.Html(string="Lot Note",readonly=True, related="lot_id.note")
 
-    @api.constrains("lot_id")
-    def compute_lot_date(self):
-        for line in self:
-            if line.lot_id:
-                line.lot_date = line.lot_id.life_date
-                line.lot_note = line.lot_id.note
+    # @api.constrains("lot_id")
+    # def compute_lot_date(self):
+    #     for line in self:
+    #         if line.lot_id:
+    #             line.lot_date = line.lot_id.life_date
+    #             line.lot_note = line.lot_id.note
 
 class HRemployee(models.Model):
     _inherit = "hr.employee"

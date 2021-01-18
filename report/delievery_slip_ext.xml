@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+     
+     <template id="delievery_slip_ext" inherit_id="stock.report_delivery_document">
+         	  <xpath expr="//table[@name='stock_move_table']//th[@name='th_sm_product']" position="after">
+				<th name="th_lot" class="text-center"><strong>Batch</strong></th>
+				<th name="th_expire" class="text-center"><strong>Expiration Date</strong></th>
+			</xpath> 
+			
+         	  <xpath expr="//table[@name='stock_move_table']//tbody//td" position="after">
+				<td class="text-center">
+                    <!-- <p> anything </p> -->
+					<span t-field="move.lot_id" />
+				</td>
+				<td class="text-center">
+					<span t-field="move.lot_id.expiration_date" />
+				</td>
+			</xpath>  
+     </template>
+    </data>
+</odoo>
