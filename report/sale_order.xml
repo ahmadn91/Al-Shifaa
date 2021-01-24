@@ -158,7 +158,7 @@
 
 				<div class="footer o_standard_footer" style="border-top:solid 1px black;direction:ltr;">
                 
-                    <table class="table table-sm o_main_table" style="margin-top:300px;">
+                    <table class="table table-sm o_main_table">
                             <thead>
                                 <tr>
                                     <th >Accountant</th>
