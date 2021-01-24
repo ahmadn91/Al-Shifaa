@@ -157,7 +157,21 @@
 				<!-- FOOTER -->
 
 				<div class="footer o_standard_footer" style="border-top:solid 1px black;direction:ltr;">
+                
+                    <table class="table table-sm o_main_table" style="margin-top:300px;">
+                            <thead>
+                                <tr>
+                                    <th >Accountant</th>
+                                    <th>Salesman</th>
+                                    <th>Manager</th>
+                                    <th>Warehouse</th>
+                                    <th>Client</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    
 					<div class="row" style="width: 100%;direction:ltr;">
+                        
 						<div style="width: 50%;">
 							<p align="left" t-if="doc.company_id.name == 'alshifa'">
 								Address :  Iraq - Baghdad - Hai ALWihda 	<br/>
@@ -292,6 +306,15 @@
 				<attribute name="style">direction: ltr;</attribute>
 			</xpath>
 
+            
+			<xpath expr="//td[@name='td_taxes']" position="attributes">
+				<attribute name="t-if">display_taxes</attribute>
+			</xpath>
+
+            
+            <xpath expr="//th[@name='th_taxes']" position="attributes">
+				<attribute name="t-if">display_taxes</attribute>
+			</xpath>
 
 			<xpath expr="//div[@name='so_total_summary']" position="before">
 				<div class="row col-6" style="margin-bottom: -80px; margin-top: 80px;">
@@ -314,7 +337,7 @@
 				</div>
 			</xpath>
 
-			<xpath expr="//div[@name='so_total_summary']" position="after">
+<!-- 			<xpath expr="//div[@name='so_total_summary']" position="after">
 				<table class="table table-sm o_main_table" style="margin-top:300px;">
 					<thead>
 						<tr>
@@ -327,7 +350,7 @@
 					</thead>
 				</table>
 			</xpath>
-
+ -->
 
 			<xpath expr="//div[@id='informations']//div[@t-if='doc.user_id.name']" position="after" class="ml-8 float-right">
 				<div t-if="doc.warehouse_location_id.location_id" class="col-auto mw-100 mb-2">
@@ -348,10 +371,21 @@
 					<span t-field="line.lot_id.life_date" />
 				</td>
 			</xpath>
+            
+            
+            <xpath expr="//div[hasclass('page')]">            
+                <t t-set="display_taxes" t-value="any([l.tax_id for l in doc.order_line])"/>
+            </xpath>
+            
+             <xpath expr="//span[@t-field='line.name']" position="replace">
+                         <span t-field="line.product_id.name"/>
+                    </xpath>
+            
+            
+             <xpath expr="//p[@t-field='doc.note']" position="before">
+                    <br/><br/><br/> <h3>Notes</h3>
+                    </xpath>
+            
 		</template>
-
-
-
-
 	</data>
 </odoo>
