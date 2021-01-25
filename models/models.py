@@ -77,6 +77,7 @@ class SaleOrderExt(models.Model):
     farthest_due_date = fields.Date(string="farthest Due", compute="get_customer_debit_details")
     warehouse_location_id = fields.Many2one('stock.picking', compute='calc_warehouse_location_id')
 
+
     @api.depends("partner_id")
     def calc_warehouse_location_id(self):
         for sale_order in self:
