@@ -408,6 +408,12 @@
           	    <attribute name="style">margin-top:-40px;</attribute>			
             </xpath> 
             
+
+
+            <xpath expr="//div[hasclass('page')]" position="attributes" t-if="doc.company_id==2">            
+          	    <attribute name="style">margin-top:-40px;</attribute>			
+            </xpath> 
+
              <xpath expr="//span[@t-field='line.name']" position="replace">
                          <span t-field="line.product_id.name"/>
                     </xpath>
