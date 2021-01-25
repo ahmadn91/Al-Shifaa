@@ -393,7 +393,18 @@
             </xpath>
             
            
-            <xpath expr="//div[hasclass('page')]" position="attributes">            
+           
+            <xpath expr="//div[hasclass('page')]" position="attributes" t-if="doc.company_id== 5 ">            
+          	    <attribute name="style">margin-top:-60px;</attribute>			
+            </xpath> 
+            
+            
+            <xpath expr="//div[hasclass('page')]" position="attributes" t-if="doc.company_id==4">            
+          	    <attribute name="style">margin-top:-40px;</attribute>			
+            </xpath> 
+            
+            
+            <xpath expr="//div[hasclass('page')]" position="attributes" t-if="doc.company_id==3">            
           	    <attribute name="style">margin-top:-40px;</attribute>			
             </xpath> 
             
