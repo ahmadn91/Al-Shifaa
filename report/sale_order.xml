@@ -305,7 +305,7 @@
 			</xpath>
 
 			<xpath expr="//div[@t-field='doc.partner_id']" position="replace">
-				<div class="col">
+				<div class="col-auto">
 					<div style="float:right; margin-right:10px;"  t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
 				</div> 
 			</xpath>
