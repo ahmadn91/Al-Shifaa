@@ -374,12 +374,7 @@
             
       
 
-             <xpath expr="//div[hasclass('page')]//h2" position="attributes" t-if="doc.company_id== 5">            
-          	    <attribute name="style">margin-top:0px;</attribute>
-		    <attribute name="class">col-6</attribute>
-
-            </xpath>
-			
+        
 			
 	    <xpath expr="//div[hasclass('page')]//h2" position="attributes" t-if="doc.company_id== 4">            
           	    <attribute name="style">margin-top:-30px;</attribute>
@@ -387,7 +382,7 @@
 
             </xpath>
 
-            <xpath expr="//div[hasclass('page')]//h2" position="attributes">  
+            <xpath expr="//div[hasclass('page')]//h2" position="attributes" t-if="not doc.company_id == 5">  
 			    <attribute name="style">margin-top:-40px;</attribute>          
           	    <attribute name="class">col-6</attribute>
             </xpath> 
