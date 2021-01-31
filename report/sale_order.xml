@@ -383,10 +383,10 @@
 
             </xpath>
 
-            <xpath expr="//div[hasclass('page')]//h2" position="attributes">  
+<!--             <xpath expr="//div[hasclass('page')]//h2" position="attributes">  
 			    <attribute name="style">margin-top:-40px;</attribute>          
           	    <attribute name="class">col-6</attribute>
-            </xpath>
+            </xpath> -->
             
            
            
