@@ -15,6 +15,7 @@
                 </field>
             </field>
     </record>
+    
     <record id="sale_order_inherit" model="ir.ui.view">
             <field name="name">sale_order_inherit</field>
             <field name="model">sale.order</field>
@@ -24,11 +25,11 @@
                   <field name="current_customer_debit"/>
                   <field name="farthest_due_date"/>
                   <field name="warehouse_location_id" />
+                  <!-- <field name="date_str" /> -->
                 </field>
                 <xpath expr="//tree//field[@name='name']" position="after">
                     <field name="lot_date"/>
-                    <field name="lot_note"/>
-                    
+                    <field name="lot_note"/>                    
                 </xpath>
             </field>
     </record>

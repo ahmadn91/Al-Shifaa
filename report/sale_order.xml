@@ -305,9 +305,8 @@
 			</xpath>
 
 			<xpath expr="//div[@t-field='doc.partner_id']" position="replace">
-				<div class="col-8 ">
-					<div align="right" t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
-                    
+				<div class="col">
+					<div style="float:right; margin-right:10px;"  t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
 				</div> 
 			</xpath>
 
@@ -351,20 +350,6 @@
 				</div>
 			</xpath>
 
-<!-- 			<xpath expr="//div[@name='so_total_summary']" position="after">
-				<table class="table table-sm o_main_table page">
-					<thead>
-						<tr>
-							<th >Accountant</th>
-							<th>Salesman</th>
-							<th>Manager</th>
-							<th>Warehouse</th>
-							<th>Client</th>
-						</tr>
-					</thead>
-				</table>
-			</xpath> -->
-
 
 			<xpath expr="//div[@id='informations']//div[@t-if='doc.user_id.name']" position="after" class="ml-8 float-right">
 				<div t-if="doc.warehouse_location_id.location_id" class="col-auto mw-100 mb-2">
@@ -378,17 +363,18 @@
 				<th name="th_expire" class="text-center">Expiration Date</th>
 			</xpath>
 			<xpath expr="//table[hasclass('o_main_table')]//td[@name='td_quantity']" position="before">
+			
 				<td class="text-center">
 					<span t-field="line.lot_id" />
 				</td>
 				<td class="text-center">
-					<span t-field="line.lot_id.life_date" />
+			     		<span t-esc="line.lot_id.life_date.strftime('%d-%m-%Y')" t-if="line.lot_id.life_date"/>
 				</td>
 			</xpath>
             
             
             <xpath expr="//div[hasclass('page')]//h2" position="attributes">            
-<!--           	    <attribute name="style">margin-top:-80px; background-color:blue;</attribute> -->
+          	    <attribute name="style">margin-top:-40px;</attribute>
           	    <attribute name="class">col-6</attribute>
             </xpath>
             
@@ -420,9 +406,45 @@
             
             
              <xpath expr="//p[@t-field='doc.note']" position="before">
-                    <br/><br/> <h3>Notes</h3>
+                    <br/><br/> <p>Notes : </p>
                     </xpath>
             
+
+            <xpath expr="//table[hasclass('o_main_table')]//td[@name='td_quantity']//span[@t-field='line.product_uom_qty']" position="replace">            
+					<span t-esc="'%.0f'% line.product_uom_qty" t-if="line.product_uom_qty" class="text-right"/>
+            </xpath> 
+
+
+            <xpath expr="//table[hasclass('o_main_table')]//td[@name='td_priceunit']//span" position="replace">            
+					<span t-esc="'%.2f'% line.price_unit" t-if="line.price_unit" class="text-right"/>
+            </xpath> 
+
+
+<!-- 
+		<xpath expr="//tbody[hasclass('sale_tbody')]//t" position="after">
+                        <t t-if="line_section and (line_last or doc.order_line[line_index+1].display_type == 'line_section')">
+                         <t> 
+                            <tr class="is-subtotal text-right">
+                                <td name="section_subqty" colspan="99">
+                                    <strong class="mr16">Sub Quantity</strong>
+                                    <span t-esc="current_sub_quantity" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.pricelist_id.currency_id}"/>
+                                </td>
+                            </tr>
+                        </t>
+                        
+        </xpath>  -->
+		
+
+<!--  
+		<xpath expr="//tbody[@class='sale_tbody']" position="after">
+                	 <t t-set="current_sub_quantity" t-value="0"/>
+		</xpath>  -->
+ 
+		<!-- <xpath expr="//table[hasclass('o_main_table')]//tbody[@class='sale_tbody']//t" position="inside">
+                        <span t-esc="current_sub_quantity + line.product_uom_qty" />
+		   </xpath>   -->
+
+
 		</template>
 	</data>
 </odoo>

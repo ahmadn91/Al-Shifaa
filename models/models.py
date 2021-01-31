@@ -2,6 +2,7 @@
 
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
+from datetime import datetime
 
 
 class Shifaa(models.Model):
@@ -76,6 +77,9 @@ class SaleOrderExt(models.Model):
     current_customer_debit = fields.Monetary(string="Cuurent Debit", compute="get_customer_debit_details")
     farthest_due_date = fields.Date(string="farthest Due", compute="get_customer_debit_details")
     warehouse_location_id = fields.Many2one('stock.picking', compute='calc_warehouse_location_id')
+    # total_qty = fields.Integer(compute="count_sold_item")
+
+
 
 
     @api.depends("partner_id")
@@ -99,9 +103,31 @@ class SaleOrderExt(models.Model):
                 sale_order.farthest_due_date= False
 
 
-# class SaleOrderLine(models.Model):
-#     _inherit = "sale.order.line"
-#     lot_id = fields.Many2one('stock.production.lot', readonly=True)
+    # @api.depends("order_line")
+    # def count_sold_item(self):
+    #     total_qty = 0
+    #     for line in self.order_line:
+    #         total_qty += line.product_uom_qty
+    #     self.total_qty = total_qty
+        
+
+
+
+
+# class OrderLineExt(models.Model):
+#     _inherit = 'sale.order.line'
+#     date_str = fields.Datetime(compute="format_date", related="lot_id.life_date")  
+
+    
+#     @api.depends("order_line")
+#     def format_date(self):
+#         date_str =''
+#         for line in self.order_line:
+#             if line.lot_date:
+#                 date_str=line.lot_date.strftime("%m/%d/%Y")
+#             self.date_str = date_str
+
+
 
 class StockImmediateTransferExt(models.TransientModel):
     _inherit="stock.immediate.transfer"
