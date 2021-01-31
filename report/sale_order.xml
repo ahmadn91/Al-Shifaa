@@ -374,10 +374,10 @@
             
             
             <xpath expr="//div[hasclass('page')]//h2" position="attributes" t-if="doc.company_id == 5">            
-          	    <attribute name="style">margin-top:-20px;</attribute>
+          	    <attribute name="style">margin-top:10px;</attribute>
             </xpath>
 	    <xpath expr="//div[hasclass('page')]//h2" position="attributes" t-if="doc.company_id== 4">            
-          	    <attribute name="style">margin-top:-37px;</attribute>
+          	    <attribute name="style">margin-top:-30px;</attribute>
             </xpath>
 
             <xpath expr="//div[hasclass('page')]//h2" position="attributes">  
