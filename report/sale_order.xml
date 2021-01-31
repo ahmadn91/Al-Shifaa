@@ -374,7 +374,7 @@
             
             
             <xpath expr="//div[hasclass('page')]//h2" position="attributes" t-if="doc.company_id== 4 or doc.company_id == 5">            
-          	    <attribute name="style">margin-top:-10px;</attribute>
+          	    <attribute name="style">margin-top:-30px;</attribute>
             </xpath>
 
 
