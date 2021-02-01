@@ -327,16 +327,18 @@
 				<attribute name="t-if">doc.amount_tax</attribute>
 			</xpath>
               
-			 <!-- <xpath expr="//div[@t-field='doc.partner_id']" position="replace">
+			  <xpath expr="//div[@t-field='doc.partner_id']" position="replace">
 				<div class="col-auto">
 					<div style="float:right; margin-right:10px;"  t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
 				</div> 
 			</xpath> 
- -->
+ 						
 
-			 <!-- <xpath expr="//div[@t-field='doc.partner_id']" position="replace">
-			
-			</xpath>  -->
+
+			  <!-- <xpath expr="//t//t[@t-set='information_block']" position="attributes">
+			  				<attribute name="class">bg-primary </attribute>
+
+			  </xpath>			 -->
 
 
 			<xpath expr="//div[@name='so_total_summary']" position="before">
@@ -368,12 +370,12 @@
 				</div>
 			</xpath>
 
-			<xpath expr="//div[@id='informations']//div[@t-if='doc.user_id.name']" position="after" class="ml-8 float-right">
+			<!-- <xpath expr="//div[@id='informations']//div[@t-if='doc.user_id.name']" position="after" class="ml-8 float-right">
 				<div t-if="doc.partner_id" class="col-auto mw-100 mb-2">
 					<strong> Partner (customer):</strong>
-					 <!-- <p t-field="doc.partner_id.name" /> -->
+					 <p t-field="doc.partner_id.name" />
 				</div>
-			</xpath>
+			</xpath> -->
 
 <!-- 
 			<xpath expr="//div[@id='informations']//div[@t-if='doc.user_id.name']" position="after" class="ml-8 float-right">
@@ -381,15 +383,15 @@
 					<strong> Address :</strong>
 					 <p t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;], &quot;no_marker&quot;: True}"/>
 				</div>
-			</xpath> -->
+			</xpath> 
 
 
 			<xpath expr="//div[@id='informations']//div[@t-if='doc.user_id.name']" position="after" class="ml-8 float-right">
 				<div t-if="doc.partner_id" class="col-auto mw-100 mb-2">
 					<strong> Phone :</strong>
-					 <!-- <p t-field="doc.partner_id.phone"/> -->
+					  <p t-field="doc.partner_id.phone"/> 
 				</div>
-			</xpath>
+			</xpath>-->
 
 
 
@@ -434,19 +436,23 @@
             
             
             <xpath expr="//div[hasclass('page')]" position="attributes" t-if="doc.company_id==4">            
-          	    <attribute name="style">margin-top:-40px;</attribute>			
+          	    <attribute name="style">margin-top:-40px;</attribute>	
+
             </xpath> 
-            
             
             <xpath expr="//div[hasclass('page')]" position="attributes" t-if="doc.company_id==3">            
           	    <attribute name="style">margin-top:-40px;</attribute>			
             </xpath> 
             
-
-
             <xpath expr="//div[hasclass('page')]" position="attributes" t-if="doc.company_id==2">            
-          	    <attribute name="style">margin-top:-10px;</attribute>			
+          	    <attribute name="style">margin-top:-25px;</attribute>			
             </xpath> 
+
+
+            <xpath expr="//div[hasclass('page')]" position="attributes" t-if="doc.company_id==7 or doc.company_id==6">            
+          	    <attribute name="style">margin-top:-25px;</attribute>			
+            </xpath> 
+
 
              <xpath expr="//span[@t-field='line.name']" position="replace">
                          <span t-field="line.product_id.name"/>
