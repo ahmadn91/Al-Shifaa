@@ -27,10 +27,6 @@
                   <field name="warehouse_location_id" />
                   <!-- <field name="date_str" /> -->
                 </field>
-                <xpath expr="//tree//field[@name='name']" position="after">
-                    <field name="lot_date"/>
-                    <field name="lot_note"/>                    
-                </xpath>
             </field>
     </record>
 
