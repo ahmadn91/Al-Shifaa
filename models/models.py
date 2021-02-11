@@ -8,7 +8,6 @@ from datetime import datetime
 class Shifaa(models.Model):
     _inherit = "res.partner"
     
-    #CATEGORIES=[("bureau","Bureau"),("company","Company"),("drugstore","Drugstore"),("pharmacy","Pharmacy"),("medical supplies","Medical Supplies"),("hospital","Hospital"),("private","Private")]
     category = fields.Char(string="Category")
     department = fields.Char(string="Department")
     price_category = fields.Char(string="Price Category")
@@ -31,13 +30,6 @@ class StockPickingExt(models.Model): # By AhmedNaseem, Used to block delivery va
             items = str(products)
             raise UserError(_("You have processed more than what was initially planned for the products %s " % items)) 
         else:
-           # By Mohammed Saeb, For sending the lot id to sale order line
-            if self.sale_id:
-                for line in self.move_line_ids_without_package:
-                    if line.lot_id:
-                        sale_order_line_id = self.sale_id.order_line.search([('product_id', '=', line.product_id.id)])
-                        sale_order_line_id.write({'lot_id': line.lot_id.id})
-
             res = super(StockPickingExt, self).button_validate()
             return res
 
@@ -103,31 +95,6 @@ class SaleOrderExt(models.Model):
                 sale_order.farthest_due_date= False
 
 
-    # @api.depends("order_line")
-    # def count_sold_item(self):
-    #     total_qty = 0
-    #     for line in self.order_line:
-    #         total_qty += line.product_uom_qty
-    #     self.total_qty = total_qty
-        
-
-
-
-
-# class OrderLineExt(models.Model):
-#     _inherit = 'sale.order.line'
-#     date_str = fields.Datetime(compute="format_date", related="lot_id.life_date")  
-
-    
-#     @api.depends("order_line")
-#     def format_date(self):
-#         date_str =''
-#         for line in self.order_line:
-#             if line.lot_date:
-#                 date_str=line.lot_date.strftime("%m/%d/%Y")
-#             self.date_str = date_str
-
-
 
 class StockImmediateTransferExt(models.TransientModel):
     _inherit="stock.immediate.transfer"
@@ -150,19 +117,6 @@ class StockImmediateTransferExt(models.TransientModel):
         res = super(StockImmediateTransferExt,self).process()
         return res
 
-
-class SaleOrderLineInherit(models.Model):
-    _inherit="sale.order.line"
-    
-    lot_date = fields.Datetime(string="Lot Expire Date",readonly=True, related="lot_id.life_date")
-    lot_note = fields.Html(string="Lot Note",readonly=True, related="lot_id.note")
-
-    @api.constrains("lot_id")
-    def compute_lot_date(self):
-        for line in self:
-            if line.lot_id:
-                line.lot_date = line.lot_id.life_date
-                line.lot_note = line.lot_id.note
 
 class HRemployee(models.Model):
     _inherit = "hr.employee"

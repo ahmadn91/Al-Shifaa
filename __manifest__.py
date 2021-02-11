@@ -18,7 +18,7 @@
     'version': '1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','stock','sale_management', 'hr_contract', 'mai_sale_order_lot_selection', 'account_accountant'],
+    'depends': ['base','stock','sale_management', 'hr_contract', 'sale_order_multi_lot', 'account_accountant'],
 
     # always loaded
     'data': [

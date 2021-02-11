@@ -158,26 +158,14 @@
             
             <div class="footer o_standard_footer" style="direction:ltr;">
                     
-<!--             <table class="table table-sm  bg-primary" style=" padding-top:-50px; !important;">
-					<thead>
-						<tr>
-							<th >Accountant</th>
-							<th>Salesman</th>
-							<th>Manager</th>
-							<th>Warehouse</th>
-							<th>Client</th>
-						</tr>
-					</thead>
-				</table> -->
                 <div class="row" style="height:50px; width:100%; margin-left:40px; margin-bottom:10px; margin-top:-10px;">
                     <div class="col-2  text-right"><p>Accountant</p></div>
                     <div class="col-2 text-right"><p>Salesman</p></div>
-                    <div class="col-2 text-right "><p>Manager</p></div>
-                    
-                        <div class="col-2 text-right "><p>Warehouse</p></div>
-                        <div class="col-2 text-right "><p>Client</p></div>
-                    
-                    </div>
+                    <div class="col-2 text-right "><p>Manager</p></div>                    
+										<div class="col-2 text-right "><p>Warehouse</p></div>
+										<div class="col-2 text-right "><p>Client</p></div>
+								
+									</div>
                 
 					<div class="row" style="direction:ltr; margin-bottom:15px; margin-top:-15px; font-size:13px; border-top:solid 1px black;">
                         
@@ -310,20 +298,15 @@
 				</div> 
 			</xpath>
 
-            
-            
-
 			<xpath expr="//td[@name='td_name']" position="attributes">
 				<attribute name="style">direction: ltr;</attribute>
 			</xpath>
-
              
 			<xpath expr="//td[@name='td_taxes']" position="attributes">
 				<attribute name="t-if">doc.amount_tax</attribute>
 			</xpath> 
-
             
-            <xpath expr="//th[@name='th_taxes']" position="attributes">
+			<xpath expr="//th[@name='th_taxes']" position="attributes">
 				<attribute name="t-if">doc.amount_tax</attribute>
 			</xpath>
               
@@ -332,14 +315,6 @@
 					<div style="float:right; margin-right:10px;"  t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
 				</div> 
 			</xpath> 
- 						
-
-
-			  <!-- <xpath expr="//t//t[@t-set='information_block']" position="attributes">
-			  				<attribute name="class">bg-primary </attribute>
-
-			  </xpath>			 -->
-
 
 			<xpath expr="//div[@name='so_total_summary']" position="before">
 				<div class="row col-6" style="margin-bottom: -80px; margin-top: 80px;">
@@ -370,42 +345,22 @@
 				</div>
 			</xpath>
 
-			<!-- <xpath expr="//div[@id='informations']//div[@t-if='doc.user_id.name']" position="after" class="ml-8 float-right">
-				<div t-if="doc.partner_id" class="col-auto mw-100 mb-2">
-					<strong> Partner (customer):</strong>
-					 <p t-field="doc.partner_id.name" />
-				</div>
-			</xpath> -->
-
-<!-- 
-			<xpath expr="//div[@id='informations']//div[@t-if='doc.user_id.name']" position="after" class="ml-8 float-right">
-				<div t-if="doc.partner_id" class="col-auto mw-100 mb-2">
-					<strong> Address :</strong>
-					 <p t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;], &quot;no_marker&quot;: True}"/>
-				</div>
-			</xpath> 
-
-
-			<xpath expr="//div[@id='informations']//div[@t-if='doc.user_id.name']" position="after" class="ml-8 float-right">
-				<div t-if="doc.partner_id" class="col-auto mw-100 mb-2">
-					<strong> Phone :</strong>
-					  <p t-field="doc.partner_id.phone"/> 
-				</div>
-			</xpath>-->
-
-
 
 			<xpath expr="//table[hasclass('o_main_table')]//th[@name='th_description']" position="after">
-				<th name="th_lot" class="text-center">Batch</th>
-				<th name="th_expire" class="text-center">Expiration Date</th>
+				<th name="th_lot" class="text-center">Batches</th>
+				<th name="th_expire" class="text-center">Expiration Dates</th>
 			</xpath>
 			<xpath expr="//table[hasclass('o_main_table')]//td[@name='td_quantity']" position="before">
 			
 				<td class="text-center">
-					<span t-field="line.lot_id" />
+					<t t-foreach="line.lot_line" t-as="lot_line"/>
+						<span t-esc="lot_line.lot_id.name + ' - ' + round(lot_line.qty, 2) + ' Units' "/>
+					</t>
 				</td>
 				<td class="text-center">
-			     		<span t-esc="line.lot_id.life_date.strftime('%d-%m-%Y')" t-if="line.lot_id.life_date"/>
+					<t t-foreach="line.lot_line" t-as="lot_line"/>
+						<span t-if="lot_line.lot_life_date" t-esc="lot_line.lot_life_date.strftime('%d-%m-%Y')"/>
+					</t>
 				</td>
 			</xpath>
             
