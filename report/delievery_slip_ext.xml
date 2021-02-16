@@ -9,10 +9,14 @@
 			
          	  <xpath expr="//table[@name='stock_move_table']//tbody//td" position="after">
 				<td class="text-center">
-					<span t-field="move.lot_id" />
+					<t t-foreach="move.move_line_ids" t-as="lot_line">
+						<p t-field="lot_line.lot_id" />
+					</t>
 				</td>
 				<td class="text-center">
-					<span t-field="move.lot_id.life_date" />
+					<t t-foreach="move.move_line_ids" t-as="lot_line">
+						<p t-field="lot_line.lot_id.life_date" />
+					</t>
 				</td>
 			</xpath>  
      </template>

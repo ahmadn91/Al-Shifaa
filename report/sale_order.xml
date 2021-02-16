@@ -354,12 +354,12 @@
 			
 				<td class="text-center">
 					<t t-foreach="line.lot_line" t-as="lot_line">
-						<span t-esc="lot_line.lot_id.name + ' - ' + round(lot_line.qty, 2) + ' Units' "/>
+						<p t-esc="lot_line.lot_id.name + ' - ' + str( round( lot_line.qty, 2) ) + ' Units' "/>
 					</t>
 				</td>
 				<td class="text-center">
 					<t t-foreach="line.lot_line" t-as="lot_line">
-						<span t-if="lot_line.lot_life_date" t-esc="lot_line.lot_life_date.strftime('%d-%m-%Y')"/>
+						<p t-if="lot_line.lot_life_date" t-esc="lot_line.lot_life_date.strftime('%d-%m-%Y')"/>
 					</t>
 				</td>
 			</xpath>
