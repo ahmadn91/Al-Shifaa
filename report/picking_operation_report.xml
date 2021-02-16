@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+
+     <template id="picking_operation_ext" inherit_id="stock.report_picking">
+      <xpath expr="//th[@name='th_serial_number']" position="before">
+        <th name="th_expire_date" class="text-center">
+            <strong>Expiration Date</strong>
+        </th>
+      </xpath> 
+			
+      <xpath expr="//td[@t-if='has_serial_number']" position="before">
+				<td class="text-center">
+          <span t-if="ml.lot_id.life_date" t-esc="ml.lot_id.life_date.strftime('%d/%m/%Y')" />
+				</td>
+      </xpath>  
+     </template>
+
+    </data>
+</odoo>

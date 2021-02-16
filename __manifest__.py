@@ -27,7 +27,7 @@
         'views/templates.xml',
         'report/sale_order.xml',
         'report/delievery_slip_ext.xml',
-        
+        'report/picking_operation_report.xml',
         
     ],
 }
