@@ -15,7 +15,7 @@
 				</td>
 				<td class="text-center">
 					<t t-foreach="move.move_line_ids" t-as="lot_line">
-						<p t-field="lot_line.lot_id.life_date" />
+						<p t-if="lot_line.lot_id.life_date" t-esc="lot_line.lot_id.life_date.strftime('%d/%m/%Y')"/>
 					</t>
 				</td>
 			</xpath>  
