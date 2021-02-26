@@ -158,7 +158,7 @@
 
 			<div class="footer o_standard_footer" style="direction:ltr;">
 
-				<div class="row" style="height:50px; width:100%; margin-left:40px; margin-bottom:10px; margin-top:-10px;">
+				<div class="row" style=" width:100%; margin-left:40px; margin-bottom:10px; margin-top:-10px;">
 					<div class="col-2  text-right"><p>Accountant</p></div>
 					<div class="col-2 text-right"><p>Salesman</p></div>
 					<div class="col-2 text-right "><p>Manager</p></div>
@@ -291,17 +291,41 @@
 			<xpath expr="//t[@t-call='web.external_layout']" position="attributes">
 				<attribute name="t-call">Al-Shifaa.custom_external_layout</attribute>
 			</xpath>
-			<xpath expr="//t[@t-set='address']" position="replace">
-				<t t-set="address">
-					<t t-if="doc.partner_id.lang == 'ar_001'">
-						<div style="float:right; margin-right:10px;direction:rtl !important;" t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
-						<p t-if="doc.partner_id.vat"><t t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"/>: <span t-field="doc.partner_id.vat"/></p>
-					</t>
-					<t t-if="doc.partner_id.lang != 'ar_001'">
-						<div style="float:right; margin-right:10px;direction:ltr !important;" t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
-						<p t-if="doc.partner_id.vat"><t t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"/>: <span t-field="doc.partner_id.vat"/></p>
-					</t>
-				</t>
+			<xpath expr="//t[@t-set='information_block']" position="replace"/>
+			<xpath expr="//div[@class='page']/h2[@class='mt16']" position="replace"/>
+			<xpath expr="//t[@t-set='address']" position="replace"/>
+			<xpath expr="//div[@class='page']" position="before">
+				<div class="row">
+					<div class="col-6">
+						<h2 class="mt16">
+							<t t-if="not (env.context.get('proforma', False) or is_pro_forma)">
+								<span t-if="doc.state not in ['draft','sent']">Order # </span>
+								<span t-if="doc.state in ['draft','sent']">Quotation # </span>
+							</t>
+							<t t-if="env.context.get('proforma', False) or is_pro_forma">
+								<span>Pro-Forma Invoice # </span>
+							</t>
+							<span t-field="doc.name"/>
+						</h2>
+					</div>
+					<div class="col-6">
+						<t t-if="doc.partner_id.lang == 'ar_001'">
+							<div style="direction:ltr;">
+								<div t-field="doc.partner_id"
+									 t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
+								<p t-if="doc.partner_id.vat"><t t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"/>: <span t-field="doc.partner_id.vat"/></p>
+
+							</div>
+
+						</t>
+						<t t-if="doc.partner_id.lang != 'ar_001'">
+							<div>
+								<div style="text-align: right;" t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
+								<p t-if="doc.partner_id.vat"><t t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"/>: <span t-field="doc.partner_id.vat"/></p>
+							</div>
+						</t>
+					</div>
+				</div>
 			</xpath>
 			<xpath expr="//h2[@class='mt16']" position="replace">
 				<h2>
@@ -316,12 +340,6 @@
 				</h2>
 			</xpath>
 
-<!--			<xpath expr="//div[@t-field='doc.partner_id']" position="replace">-->
-<!--				<div class="col-auto">-->
-<!--					<div style="float:right; margin-right:10px;"  t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>-->
-<!--				</div>-->
-<!--			</xpath>-->
-
 			<xpath expr="//td[@name='td_name']" position="attributes">
 				<attribute name="style">direction: ltr;</attribute>
 			</xpath>
@@ -334,11 +352,16 @@
 				<attribute name="t-if">doc.amount_tax</attribute>
 			</xpath>
 
-			<xpath expr="//div[@t-field='doc.partner_id']" position="replace">
-				<div class="col-auto">
-					<div style="float:right; margin-right:10px;"  t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
-				</div>
-			</xpath>
+			<!--						<xpath expr="//div[@t-field='doc.partner_id']" position="replace">-->
+			<!--							<div class="col-12" style="border:1px solid red;">-->
+			<!--								<t t-if="request.env.user.lang == 'ar_001'">-->
+			<!--									<div style="float:right; margin-right:10px;text-align: left;border:1px solid black;"  t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>-->
+			<!--								</t>-->
+			<!--								<t t-if="request.env.user.lang != 'ar_001'">-->
+			<!--									<div style="float:right; margin-right:10px;border:1px solid black;"  t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>-->
+			<!--								</t>-->
+			<!--							</div>-->
+			<!--						</xpath>-->
 
 			<xpath expr="//div[@name='so_total_summary']" position="before">
 				<div class="row col-6" style="margin-bottom: -80px; margin-top: 80px;">
@@ -388,25 +411,21 @@
 				</td>
 			</xpath>
 
+			<!--			<xpath expr="//div[hasclass('page')]//h2" position="attributes" t-if="doc.company_id== 4">-->
+			<!--				<attribute name="style">margin-top:-30px;</attribute>-->
+			<!--				<attribute name="class">col-6</attribute>-->
 
+			<!--			</xpath>-->
 
+			<!--			<xpath expr="//div[hasclass('page')]//h2" position="attributes">-->
+			<!--				<attribute name="style">margin-top:-40px;</attribute>-->
+			<!--				<attribute name="class">col-6</attribute>-->
+			<!--			</xpath>-->
 
-
-			<xpath expr="//div[hasclass('page')]//h2" position="attributes" t-if="doc.company_id== 4">
-				<attribute name="style">margin-top:-30px;</attribute>
-				<attribute name="class">col-6</attribute>
-
-			</xpath>
-
-			<xpath expr="//div[hasclass('page')]//h2" position="attributes">
-				<attribute name="style">margin-top:-40px;</attribute>
-				<attribute name="class">col-6</attribute>
-			</xpath>
-
-			<xpath expr="//div[hasclass('page')]//h2" position="attributes" t-if="doc.company_id== 5">
-				<attribute name="style">margin-top:0px;</attribute>
-				<attribute name="class">col-6</attribute>
-			</xpath>
+			<!--			<xpath expr="//div[hasclass('page')]//h2" position="attributes" t-if="doc.company_id== 5">-->
+			<!--				<attribute name="style">margin-top:0px;</attribute>-->
+			<!--				<attribute name="class">col-6</attribute>-->
+			<!--			</xpath>-->
 
 
 			<xpath expr="//div[hasclass('page')]" position="attributes" t-if="doc.company_id== 5 ">
@@ -436,14 +455,11 @@
 			<xpath expr="//span[@t-field='line.name']" position="replace">
 				<span t-field="line.product_id.name"/>
 			</xpath>
-
-
 			<xpath expr="//p[@t-field='doc.note']" position="before">
 				<t t-if="doc.note">
 					<br/><br/> <p>Notes : </p>
 				</t>
 			</xpath>
-
 
 			<xpath expr="//table[hasclass('o_main_table')]//td[@name='td_quantity']//span[@t-field='line.product_uom_qty']" position="replace">
 				<span t-esc="'%.0f'% line.product_uom_qty" t-if="line.product_uom_qty" class="text-right"/>
@@ -454,32 +470,32 @@
 				<span t-esc="'%.2f'% line.price_unit" t-if="line.price_unit" class="text-right"/>
 			</xpath>
 
+			<!--			Declare variable-->
+			<xpath expr="//tbody[@class='sale_tbody']/t[@t-set='current_subtotal']" position="after">
+				<t t-set="current_qty" t-value="0"/>
+			</xpath>
+			<!--			Increment variable-->
+			<xpath expr="//tbody[@class='sale_tbody']/t[@t-foreach='doc.order_line']/t[@t-set='current_subtotal']" position="after">
+				<t t-set="current_qty" t-value="current_qty + line.product_uom_qty" />
+			</xpath>
+			<!--			set 0 to line_section-->
+
+			<xpath expr="//t[@t-set='current_section']" position="after">
+				<t t-set="current_qty" t-value="0"/>
+			</xpath>
+			<!--			add to td for display-->
 
 
-			<!--
-                    <xpath expr="//tbody[hasclass('sale_tbody')]//t" position="after">
-                                    <t t-if="line_section and (line_last or doc.order_line[line_index+1].display_type == 'line_section')">
-                                     <t>
-                                        <tr class="is-subtotal text-right">
-                                            <td name="section_subqty" colspan="99">
-                                                <strong class="mr16">Sub Quantity</strong>
-                                                <span t-esc="current_sub_quantity" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.pricelist_id.currency_id}"/>
-                                            </td>
-                                        </tr>
-                                    </t>
-
-                    </xpath>  -->
-
-
-			<!--
-                    <xpath expr="//tbody[@class='sale_tbody']" position="after">
-                                 <t t-set="current_sub_quantity" t-value="0"/>
-                    </xpath>  -->
-
-			<!-- <xpath expr="//table[hasclass('o_main_table')]//tbody[@class='sale_tbody']//t" position="inside">
-                            <span t-esc="current_sub_quantity + line.product_uom_qty" />
-               </xpath>   -->
-
+			<xpath expr="//td[@name='td_section_subtotal']" position="before">
+				<td colspan="4">
+					<strong class="mr16">Sub Quantity</strong>
+					<span t-esc="current_qty"/>
+				</td>
+			</xpath>
+			<!--Adjust colspan for section subtotal -->
+			<xpath expr="//td[@name='td_section_subtotal']" position="attributes">
+				<attribute name="colspan">95</attribute>
+			</xpath>
 
 		</template>
 	</data>
