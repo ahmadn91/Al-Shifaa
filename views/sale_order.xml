@@ -4,7 +4,7 @@
 
 		<template id="report_assets_common_custom_fonts" name="Custom QWeb fonts" inherit_id="web.report_assets_common">
 			<xpath expr="." position="inside">
-				<link href="Al-Shifaa/static/src/css/main.css" rel="stylesheet" type="text/css"/>
+				<link href="Al-Shifaa-master/static/src/css/main.css" rel="stylesheet" type="text/css"/>
 			</xpath>
 		</template>
 
@@ -158,7 +158,7 @@
 
 			<div class="footer o_standard_footer" style="direction:ltr;">
 
-				<div class="row" style=" width:100%; margin-left:40px; margin-bottom:10px; margin-top:-10px;">
+				<div class="row" style="height:50px; width:100%; margin-left:40px; margin-bottom:10px; margin-top:-10px;">
 					<div class="col-2  text-right"><p>Accountant</p></div>
 					<div class="col-2 text-right"><p>Salesman</p></div>
 					<div class="col-2 text-right "><p>Manager</p></div>
@@ -288,44 +288,27 @@
 		<!-- MAIN TEMPLATE  -->
 		<template id="shifaa_saleorder_report" inherit_id="sale.report_saleorder_document">
 
+
 			<xpath expr="//t[@t-call='web.external_layout']" position="attributes">
-				<attribute name="t-call">Al-Shifaa.custom_external_layout</attribute>
+				<attribute name="t-call">Al-Shifaa-master.custom_external_layout</attribute>
 			</xpath>
-			<xpath expr="//t[@t-set='information_block']" position="replace"/>
-			<xpath expr="//div[@class='page']/h2[@class='mt16']" position="replace"/>
-			<xpath expr="//t[@t-set='address']" position="replace"/>
-			<xpath expr="//div[@class='page']" position="before">
-				<div class="row">
-					<div class="col-6">
-						<h2 class="mt16">
-							<t t-if="not (env.context.get('proforma', False) or is_pro_forma)">
-								<span t-if="doc.state not in ['draft','sent']">Order # </span>
-								<span t-if="doc.state in ['draft','sent']">Quotation # </span>
-							</t>
-							<t t-if="env.context.get('proforma', False) or is_pro_forma">
-								<span>Pro-Forma Invoice # </span>
-							</t>
-							<span t-field="doc.name"/>
-						</h2>
-					</div>
-					<div class="col-6">
-						<t t-if="doc.partner_id.lang == 'ar_001'">
-							<div style="direction:ltr;">
-								<div t-field="doc.partner_id"
-									 t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
-								<p t-if="doc.partner_id.vat"><t t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"/>: <span t-field="doc.partner_id.vat"/></p>
+			<xpath expr="//t[@t-set='address']" position="replace">
+				<t t-set="address">
+					<t t-if="doc.partner_id.lang == 'ar_001'">
+						<div class="col-12">
+							<div style="text-align: right;float:right; margin-right:10px;" t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
+							<p t-if="doc.partner_id.vat"><t t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"/>: <span t-field="doc.partner_id.vat"/></p>
+						</div>
 
-							</div>
+					</t>
+					<t t-if="doc.partner_id.lang != 'ar_001'">
+						<div class="col-12">
+							<div style="text-align: left;" t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
+							<p t-if="doc.partner_id.vat"><t t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"/>: <span t-field="doc.partner_id.vat"/></p>
+						</div>
 
-						</t>
-						<t t-if="doc.partner_id.lang != 'ar_001'">
-							<div>
-								<div style="text-align: right;" t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
-								<p t-if="doc.partner_id.vat"><t t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"/>: <span t-field="doc.partner_id.vat"/></p>
-							</div>
-						</t>
-					</div>
-				</div>
+					</t>
+				</t>
 			</xpath>
 			<xpath expr="//h2[@class='mt16']" position="replace">
 				<h2>
@@ -352,16 +335,16 @@
 				<attribute name="t-if">doc.amount_tax</attribute>
 			</xpath>
 
-			<!--						<xpath expr="//div[@t-field='doc.partner_id']" position="replace">-->
-			<!--							<div class="col-12" style="border:1px solid red;">-->
-			<!--								<t t-if="request.env.user.lang == 'ar_001'">-->
-			<!--									<div style="float:right; margin-right:10px;text-align: left;border:1px solid black;"  t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>-->
-			<!--								</t>-->
-			<!--								<t t-if="request.env.user.lang != 'ar_001'">-->
-			<!--									<div style="float:right; margin-right:10px;border:1px solid black;"  t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>-->
-			<!--								</t>-->
-			<!--							</div>-->
-			<!--						</xpath>-->
+			<!--			<xpath expr="//div[@t-field='doc.partner_id']" position="replace">-->
+			<!--				<div class="col-12" style="border:1px solid red;">-->
+			<!--					<t t-if="request.env.user.lang == 'ar_001'">-->
+			<!--						<div style="float:right; margin-right:10px;text-align: left;border:1px solid black;"  t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>-->
+			<!--					</t>-->
+			<!--					<t t-if="request.env.user.lang != 'ar_001'">-->
+			<!--						<div style="float:right; margin-right:10px;border:1px solid black;"  t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>-->
+			<!--					</t>-->
+			<!--				</div>-->
+			<!--			</xpath>-->
 
 			<xpath expr="//div[@name='so_total_summary']" position="before">
 				<div class="row col-6" style="margin-bottom: -80px; margin-top: 80px;">
@@ -411,21 +394,21 @@
 				</td>
 			</xpath>
 
-			<!--			<xpath expr="//div[hasclass('page')]//h2" position="attributes" t-if="doc.company_id== 4">-->
-			<!--				<attribute name="style">margin-top:-30px;</attribute>-->
-			<!--				<attribute name="class">col-6</attribute>-->
+			<xpath expr="//div[hasclass('page')]//h2" position="attributes" t-if="doc.company_id== 4">
+				<attribute name="style">margin-top:-30px;</attribute>
+				<attribute name="class">col-6</attribute>
 
-			<!--			</xpath>-->
+			</xpath>
 
-			<!--			<xpath expr="//div[hasclass('page')]//h2" position="attributes">-->
-			<!--				<attribute name="style">margin-top:-40px;</attribute>-->
-			<!--				<attribute name="class">col-6</attribute>-->
-			<!--			</xpath>-->
+			<xpath expr="//div[hasclass('page')]//h2" position="attributes">
+				<attribute name="style">margin-top:-40px;</attribute>
+				<attribute name="class">col-6</attribute>
+			</xpath>
 
-			<!--			<xpath expr="//div[hasclass('page')]//h2" position="attributes" t-if="doc.company_id== 5">-->
-			<!--				<attribute name="style">margin-top:0px;</attribute>-->
-			<!--				<attribute name="class">col-6</attribute>-->
-			<!--			</xpath>-->
+			<xpath expr="//div[hasclass('page')]//h2" position="attributes" t-if="doc.company_id== 5">
+				<attribute name="style">margin-top:0px;</attribute>
+				<attribute name="class">col-6</attribute>
+			</xpath>
 
 
 			<xpath expr="//div[hasclass('page')]" position="attributes" t-if="doc.company_id== 5 ">
