@@ -8,7 +8,6 @@
       <field name="arch" type="xml">
         <xpath expr="//field[@name='ref']" position="before">
           <field name="on_hold_qty"/>
-          <field name="open_qty"/>
         </xpath>
       </field>
     </record>
