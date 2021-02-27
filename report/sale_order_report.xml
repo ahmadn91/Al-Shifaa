@@ -425,35 +425,8 @@
 
 
             <xpath expr="//table[hasclass('o_main_table')]//td[@name='td_priceunit']//span" position="replace">            
-					<span t-esc="'%.2f'% line.price_unit" t-if="line.price_unit" class="text-right"/>
+							<span t-esc="'%.2f'% line.price_unit" t-if="line.price_unit" class="text-right"/>
             </xpath> 
-
-
-
-<!-- 
-		<xpath expr="//tbody[hasclass('sale_tbody')]//t" position="after">
-                        <t t-if="line_section and (line_last or doc.order_line[line_index+1].display_type == 'line_section')">
-                         <t> 
-                            <tr class="is-subtotal text-right">
-                                <td name="section_subqty" colspan="99">
-                                    <strong class="mr16">Sub Quantity</strong>
-                                    <span t-esc="current_sub_quantity" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.pricelist_id.currency_id}"/>
-                                </td>
-                            </tr>
-                        </t>
-                        
-        </xpath>  -->
-		
-
-<!--  
-		<xpath expr="//tbody[@class='sale_tbody']" position="after">
-                	 <t t-set="current_sub_quantity" t-value="0"/>
-		</xpath>  -->
- 
-		<!-- <xpath expr="//table[hasclass('o_main_table')]//tbody[@class='sale_tbody']//t" position="inside">
-                        <span t-esc="current_sub_quantity + line.product_uom_qty" />
-		   </xpath>   -->
-
 
 		</template>
 	</data>

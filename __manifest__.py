@@ -25,9 +25,10 @@
         # 'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
-        'report/sale_order.xml',
+        # 'views/sale_order_view.xml',
+        'views/stock_production_lot_view.xml',
+        'report/sale_order_report.xml',
         'report/delievery_slip_ext.xml',
         'report/picking_operation_report.xml',
-        
     ],
 }
