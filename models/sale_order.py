@@ -10,9 +10,6 @@ class SaleOrderExt(models.Model):
     warehouse_location_id = fields.Many2one('stock.picking', compute='calc_warehouse_location_id')
     # total_qty = fields.Integer(compute="count_sold_item")
 
-
-
-
     @api.depends("partner_id")
     def calc_warehouse_location_id(self):
         for sale_order in self:
@@ -32,6 +29,7 @@ class SaleOrderExt(models.Model):
                 sale_order.farthest_due_date = move_id.invoice_date_due
             else:
                 sale_order.farthest_due_date= False
+
 
 class SaleOrderLineLot(models.Model):
   _inherit = "sale.order.line.lot.line"

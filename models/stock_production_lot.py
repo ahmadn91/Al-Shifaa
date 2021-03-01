@@ -8,6 +8,18 @@ class StockLot(models.Model):
   on_hold_qty = fields.Float(string="On Hold Quantity")
   open_qty = fields.Float(string="Available Quantity", compute='_get_open_quantity')
 
+  @api.model
+  def name_get(self):
+    result = []
+    for record in self:
+      if self.env.user.has_group('sales_team.group_sale_salesman'):
+        lot_name = f"{record.name} ({record.open_qty} Quantity)"
+        result.append((record.id, lot_name))
+      else:
+        record_name = record.name
+        result.append((record.id, record_name))
+    return result
+
   @api.constrains('on_hold_qty', 'product_qty')
   def _get_open_quantity(self):
     for line in self:
