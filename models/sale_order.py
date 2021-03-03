@@ -8,7 +8,7 @@ class SaleOrderExt(models.Model):
     current_customer_debit = fields.Monetary(string="Cuurent Debit", compute="get_customer_debit_details")
     farthest_due_date = fields.Date(string="farthest Due", compute="get_customer_debit_details")
     warehouse_location_id = fields.Many2one('stock.picking', compute='calc_warehouse_location_id')
-    # total_qty = fields.Integer(compute="count_sold_item")
+    date_order = fields.Datetime(readonly=False)
 
     @api.depends("partner_id")
     def calc_warehouse_location_id(self):
@@ -30,6 +30,11 @@ class SaleOrderExt(models.Model):
             else:
                 sale_order.farthest_due_date= False
 
+    def action_confirm(self):
+        date_order = self.date_order
+        res = super(SaleOrderExt, self).action_confirm()
+        self.date_order = date_order
+        return res
 
 class SaleOrderLineLot(models.Model):
   _inherit = "sale.order.line.lot.line"
