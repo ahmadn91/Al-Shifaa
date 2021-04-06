@@ -401,7 +401,7 @@
 
 				<td class="text-center">
 					<t t-foreach="line.lot_line" t-as="lot_line">
-						<p t-esc="lot_line.lot_id.name + ' - ' + str( round( lot_line.qty, 2) ) + ' Units' "/>
+						<p t-esc="lot_line.lot_id.name"/>
 					</t>
 				</td>
 				<td class="text-center">
