@@ -18,11 +18,12 @@
     'version': '1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','stock','sale_management', 'hr_contract', 'sale_order_multi_lot', 'account_accountant'],
+    'depends': ['base','stock','sale_management', 'hr_contract', 'sale_order_multi_lot', 'account_accountant', 'hr_expense'],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
+        'data/recorde_rules.xml',
         'views/views.xml',
         'views/templates.xml',
         'views/stock_production_lot_view.xml',
