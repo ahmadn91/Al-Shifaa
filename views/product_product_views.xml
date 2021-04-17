@@ -1,0 +1,33 @@
+<odoo>
+    <data>
+
+        <record id="product_template_form_shifaa" model="ir.ui.view">
+            <field name="name">product.template.form.shifaa</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//label[@for='standard_price']" position="attributes">
+                    <attribute name="groups">purchase.group_purchase_user</attribute>
+                </xpath>
+                <xpath expr="//div[@name='standard_price_uom']" position="attributes">
+                    <attribute name="groups">purchase.group_purchase_user</attribute>
+                </xpath>
+                <xpath expr="//page[@name='purchase']" position="attributes">
+                    <attribute name="groups">purchase.group_purchase_user</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="product_template_tree_shifaa" model="ir.ui.view">
+            <field name="name">product.template.tree.shifaa</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_tree_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='standard_price']" position="attributes">
+                    <attribute name="groups">purchase.group_purchase_user</attribute>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
