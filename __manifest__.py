@@ -26,6 +26,7 @@
         'data/recorde_rules.xml',
         'views/views.xml',
         'views/product_product_views.xml',
+        'views/stock_quant_views.xml',
         'views/stock_production_lot_view.xml',
         'report/sale_order_report.xml',
         'report/delievery_slip_ext.xml',
