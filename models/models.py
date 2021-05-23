@@ -14,10 +14,6 @@ class Shifaa(models.Model):
     client_code = fields.Integer(string="Client Code")
 
 
-
-    
-
-
 class StockPickingExt(models.Model): # By AhmedNaseem, Used to block delivery validation if Done > Demand.
     _inherit="stock.picking"
 
@@ -33,14 +29,9 @@ class StockPickingExt(models.Model): # By AhmedNaseem, Used to block delivery va
             res = super(StockPickingExt, self).button_validate()
             return res
 
-    
-
-
-
 
 class StockReturnExt(models.TransientModel):
     _inherit="stock.return.picking"
-
 
     def notify(self,rec_id="",rec_name=""): #takes in record_id and record_name
         try:
@@ -85,4 +76,3 @@ class StockImmediateTransferExt(models.TransientModel):
 class HRemployee(models.Model):
     _inherit = "hr.employee"
     starting_date = fields.Date(related="contract_id.date_start")
-

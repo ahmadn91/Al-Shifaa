@@ -1,47 +1,44 @@
 <odoo>
-  <data>
+    <data>
 
-    <record id="SHIFAA" model="ir.ui.view">
+        <record id="SHIFAA" model="ir.ui.view">
             <field name="name">shifaa_addition</field>
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
-            <field name="arch" type="xml">
-                <field name="category_id" position="before">
-                   <field name="category" />
-                   <field name="department" />
-                   <field name="price_category" />
-                   <field name="client_code" />
-                  
+                <field name="arch" type="xml">
+                    <field name="category_id" position="before">
+                    <field name="category" />
+                    <field name="department" />
+                    <field name="price_category" />
+                    <field name="client_code" />
                 </field>
             </field>
-    </record>
+        </record>
     
-    <record id="sale_order_inherit" model="ir.ui.view">
+        <record id="sale_order_inherit" model="ir.ui.view">
             <field name="name">sale_order_inherit</field>
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                 <field name="partner_id" position="after">
-                  <field name="current_customer_debit"/>
-                  <field name="farthest_due_date"/>
-                  <field name="warehouse_location_id" />
-                  <!-- <field name="date_str" /> -->
+                <field name="current_customer_debit"/>
+                <field name="farthest_due_date"/>
+                <field name="warehouse_location_id" />
+                <!-- <field name="date_str" /> -->
                 </field>
             </field>
-    </record>
+        </record>
 
-    <record id="hr_employee_form_shifaa" model="ir.ui.view">
-      <field name="name">hr_employee.form.shifaa</field>
-      <field name="model">hr.employee</field>
-      <field name="inherit_id" ref="hr.view_employee_form"/>
-      <field name="arch" type="xml">
-
-        <field name="company_id" position="after">
-          <field name="starting_date"/>
-        </field>
-
-      </field>
-    </record>
+        <record id="hr_employee_form_shifaa" model="ir.ui.view">
+            <field name="name">hr_employee.form.shifaa</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <field name="company_id" position="after">
+                    <field name="starting_date"/>
+                </field>
+            </field>
+        </record>
 
     <!-- Top menu item -->
 <!--
@@ -59,5 +56,5 @@
     <menuitem name="Server to list" id="al-shiffa" parent="al-shiffa.menu_2"
               action="al-shiffa.action_server"/>
 -->
-  </data>
+    </data>
 </odoo>

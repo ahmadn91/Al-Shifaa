@@ -37,15 +37,15 @@ class SaleOrderExt(models.Model):
         return res
 
 class SaleOrderLineLot(models.Model):
-  _inherit = "sale.order.line.lot.line"
+    _inherit = "sale.order.line.lot.line"
 
-  @api.onchange('qty', 'lot_id')
-  def _check_avaiable_qty(self):
-    for line in self:
-      if line.qty and line.lot_id:
-        if line.qty > line.lot_id.open_qty:
-          raise UserError(_(f"The selected quantity for batch {line.lot_id.name} is bigger than the available quantity for this batch"))
-        else:
-          pass
-      else:
-        pass
+    @api.onchange('qty', 'lot_id')
+    def _check_avaiable_qty(self):
+        for line in self:
+            if line.qty and line.lot_id:
+                if line.qty > line.lot_id.open_qty:
+                    raise UserError(_(f"The selected quantity for batch {line.lot_id.name} is bigger than the available quantity for this batch"))
+                else:
+                    pass
+            else:
+                pass

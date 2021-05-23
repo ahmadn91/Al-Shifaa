@@ -1,24 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 	<data>
-     <template id="delievery_slip_ext" inherit_id="stock.report_delivery_document">
-         	  <xpath expr="//table[@name='stock_move_table']//th[@name='th_sm_product']" position="after">
-				<th name="th_lot" class="text-center" ><strong>Batch</strong></th>
-				<th name="th_expire" class="text-center"><strong>Expiration Date</strong></th>
-			</xpath> 
-			
-         	  <xpath expr="//table[@name='stock_move_table']//tbody//td" position="after">
-				<td class="text-center">
-					<t t-foreach="move.move_line_ids" t-as="lot_line">
-						<p t-field="lot_line.lot_id" />
-					</t>
-				</td>
-				<td class="text-center">
-					<t t-foreach="move.move_line_ids" t-as="lot_line">
-						<p t-if="lot_line.lot_id.life_date" t-esc="lot_line.lot_id.life_date.strftime('%d/%m/%Y')"/>
-					</t>
-				</td>
-			</xpath>  
-     </template>
+		<template id="delievery_slip_ext" inherit_id="stock.report_delivery_document">
+
+				<xpath expr="//div[@class='page']//div//div[2]" position="after">
+					<div class="col-auto" name="div_Salesperson">
+						<strong>Salesperson:</strong>
+						<p t-field="o.sale_id.user_id"/>
+					</div>
+				</xpath> 
+
+				<xpath expr="//table[@name='stock_move_table']//th[@name='th_sm_product']" position="after">
+					<th name="th_lot" class="text-center" ><strong>Batch</strong></th>
+					<th name="th_expire" class="text-center"><strong>Expiration Date</strong></th>
+				</xpath> 
+				
+				<xpath expr="//table[@name='stock_move_table']//tbody//td" position="after">
+					<td class="text-center">
+						<t t-foreach="move.move_line_ids" t-as="lot_line">
+							<p t-field="lot_line.lot_id" />
+						</t>
+					</td>
+					<td class="text-center">
+						<t t-foreach="move.move_line_ids" t-as="lot_line">
+							<p t-if="lot_line.lot_id.life_date" t-esc="lot_line.lot_id.life_date.strftime('%d/%m/%Y')"/>
+						</t>
+					</td>
+				</xpath>  
+		</template>
     </data>
 </odoo>

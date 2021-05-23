@@ -6,9 +6,9 @@
 
     'description': """
         A module for custom changes made for Al-Shifaa By Integrated Path. That includes changes to sale.order, stock.picking & hr.employee
-         models and reports""",
+        models and reports""",
 
-    'author': "Integerated Path",
+    'author': "INTEGRATED PATH",
     'website': "https://www.int-path.com",
 
     # Categories can be used to filter modules in modules listing
@@ -18,18 +18,20 @@
     'version': '1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','stock','sale_management', 'hr_contract', 'sale_order_multi_lot', 'account_accountant', 'hr_expense'],
+    'depends': ['base','stock','sale_management', 'hr_contract', 
+                'sale_order_multi_lot', 'account_accountant', 'hr_expense'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
         'data/recorde_rules.xml',
         'views/views.xml',
         'views/product_product_views.xml',
         'views/stock_quant_views.xml',
         'views/stock_production_lot_view.xml',
+        'views/stock_picking_view.xml',
         'report/sale_order_report.xml',
         'report/delievery_slip_ext.xml',
         'report/picking_operation_report.xml',
+        
     ],
 }
