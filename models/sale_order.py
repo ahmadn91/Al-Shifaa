@@ -4,7 +4,8 @@ from odoo.exceptions import UserError
 
 class SaleOrderExt(models.Model):
     _inherit="sale.order"
-
+        
+    categ_id = fields.Many2one(related="order_line.product_id.categ_id")
     current_customer_debit = fields.Monetary(string="Cuurent Debit", compute="get_customer_debit_details")
     farthest_due_date = fields.Date(string="farthest Due", compute="get_customer_debit_details")
     warehouse_location_id = fields.Many2one('stock.picking', compute='calc_warehouse_location_id')
