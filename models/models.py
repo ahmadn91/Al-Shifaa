@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 from datetime import datetime
@@ -75,4 +74,5 @@ class StockImmediateTransferExt(models.TransientModel):
 
 class HRemployee(models.Model):
     _inherit = "hr.employee"
+
     starting_date = fields.Date(related="contract_id.date_start")
