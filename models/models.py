@@ -4,15 +4,6 @@ from odoo.exceptions import UserError
 from datetime import datetime
 
 
-class Shifaa(models.Model):
-    _inherit = "res.partner"
-    
-    category = fields.Char(string="Category")
-    department = fields.Char(string="Department")
-    price_category = fields.Char(string="Price Category")
-    client_code = fields.Integer(string="Client Code")
-
-
 class StockPickingExt(models.Model): # By AhmedNaseem, Used to block delivery validation if Done > Demand.
     _inherit="stock.picking"
 
