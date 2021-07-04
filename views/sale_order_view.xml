@@ -9,6 +9,12 @@
                 <xpath expr="//page[@name='other_information']//group//group[1]" position="inside">
                     <field name="categ_id"/>
                 </xpath>
+                <field name="partner_id" position="after">
+                    <field name="current_customer_debit"/>
+                    <field name="farthest_due_date"/>
+                    <field name="warehouse_location_id" />
+                    <!-- <field name="date_str" /> -->
+                </field>
             </field>
         </record>
     </data>
