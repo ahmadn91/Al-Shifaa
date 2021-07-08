@@ -400,14 +400,10 @@
 			<xpath expr="//table[hasclass('o_main_table')]//td[@name='td_quantity']" position="before">
 
 				<td class="text-center">
-					<t t-foreach="line.lot_line" t-as="lot_line">
-						<p t-esc="lot_line.lot_id.name"/>
-					</t>
+					<p t-field="line.lot_id"/>
 				</td>
 				<td class="text-center">
-					<t t-foreach="line.lot_line" t-as="lot_line">
-						<p t-if="lot_line.lot_life_date" t-esc="lot_line.lot_life_date.strftime('%d/%m/%Y')"/>
-					</t>
+					<p t-if="line.lot_id.life_date" t-esc="line.lot_id.life_date.strftime('%d/%m/%Y')"/>
 				</td>
 			</xpath>
 
