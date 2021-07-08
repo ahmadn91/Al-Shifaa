@@ -9,7 +9,6 @@
                     <field name="department" />
                     <field name="price_category" />
                     <field name="client_code" />
-                    <field name="client_category_id" />
                 </field>
             </field>
         </record>

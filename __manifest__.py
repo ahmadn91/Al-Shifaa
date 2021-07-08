@@ -6,7 +6,7 @@
 
     'description': """
         A module for custom changes made for Al-Shifaa By Integrated Path. That includes changes to Sales,
-        Inventory, Accounting, Contacts, Hr, and Events.""",
+        Inventory, Accounting, Hr, and Events.""",
 
     'author': "INTEGRATED PATH",
     'website': "https://www.int-path.com",
@@ -25,9 +25,7 @@
 
     # always loaded
     'data': [
-        'security/ir.model.access.csv',
         'data/recorde_rules.xml',
-        'views/views.xml',
         'views/product_product_views.xml',
         'views/stock_quant_views.xml',
         'views/stock_production_lot_view.xml',

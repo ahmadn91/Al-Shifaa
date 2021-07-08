@@ -20,7 +20,6 @@
                 <xpath expr="//field[@name='journal_id']" position="after">
                     <field name="salesman_id"/>
                     <field name="communication"/>
-                    <field name="partner_category_id"/>
                     <field name="district_id"/>
                 </xpath>
             </field>
