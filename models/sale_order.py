@@ -31,10 +31,14 @@ class SaleOrderExt(models.Model):
             else:
                 sale_order.farthest_due_date= False
 
-    
-
     def action_confirm(self):
         date_order = self.date_order
         res = super(SaleOrderExt, self).action_confirm()
         self.date_order = date_order
         return res
+
+class SaleOrderLine(models.Model):
+    _inherit = "sale.order.line"
+
+    lot_life_date = fields.Datetime(related="lot_id.life_date")
+    lot_note = fields.Html(related="lot_id.note")
