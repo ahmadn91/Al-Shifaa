@@ -36,9 +36,3 @@ class SaleOrderExt(models.Model):
         res = super(SaleOrderExt, self).action_confirm()
         self.date_order = date_order
         return res
-
-class SaleOrderLine(models.Model):
-    _inherit = "sale.order.line"
-
-    lot_life_date = fields.Datetime(related="lot_id.life_date")
-    lot_note = fields.Html(related="lot_id.note")

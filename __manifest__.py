@@ -19,7 +19,7 @@
 
     # any module necessary for this one to work correctly
     'depends': [
-        'base', 'stock', 'sale_management', 'hr_contract', 'mai_sale_order_lot_selection', 
+        'base', 'stock', 'sale_management', 'hr_contract', 
         'account_accountant', 'hr_expense', 'event', 'contacts', 'sales_customisations'
     ],
 

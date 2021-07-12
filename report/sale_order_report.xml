@@ -397,16 +397,6 @@
 				<th name="th_lot" class="text-center">Batches</th>
 				<th name="th_expire" class="text-center">Expiration Dates</th>
 			</xpath>
-			<xpath expr="//table[hasclass('o_main_table')]//td[@name='td_quantity']" position="before">
-
-				<td class="text-center">
-					<p t-field="line.lot_id"/>
-				</td>
-				<td class="text-center">
-					<p t-if="line.lot_id.life_date" t-esc="line.lot_id.life_date.strftime('%d/%m/%Y')"/>
-				</td>
-			</xpath>
-
 			<!--			<xpath expr="//div[hasclass('page')]//h2" position="attributes" t-if="doc.company_id== 4">-->
 			<!--				<attribute name="style">margin-top:-30px;</attribute>-->
 			<!--				<attribute name="class">col-6</attribute>-->
